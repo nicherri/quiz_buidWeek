@@ -246,6 +246,7 @@ const totdom = document.getElementById("totdomande");
 
 let domandaNumber = 0;
 var score = 0;
+
 function showdomanda() {
   restartTimer();
   let currentdomanda = domandas[domandaNumber];
@@ -298,23 +299,8 @@ function showNextdomanda() {
       showdomanda();
     }, 300);
   } else {
-    showScore();
-    document.getElementById("domanda").classList.add("score");
-    document.getElementById("timer").remove();
-    question_n.innerHTML = ""; //numero della domanda
-    totdomande.innerHTML = ""; // num tot domande
-  }
+   window.location = "./risultati.html"
 }
-
-function showScore() {
-  resetState();
-  domandaElement.innerHTML = `
-    <a href="./risultati.html">
-    <button id="btnrst">
-        Show results
-    </button>
-    </a>
-    `;
 }
 
 // Aggiungi un gestore di eventi per il contenitore dei pulsanti delle risposte
@@ -327,7 +313,7 @@ window.onload = function () {
 //-----------------------------------Inizio terza pagina (Flavio)--------------------------------------
 
 const risposteCorrette = score; // metti variabile / da cambiare
-const risposteSbagliate = domandas.length - risposteCorrette; // metti variabile / da cambiare
+const risposteSbagliate = domandas.length - score; // metti variabile / da cambiare
 
 const risposteTotali = domandas.length; /// risposte totali da non cambiare, sono 10
 
@@ -434,7 +420,6 @@ const risposteChart = new Chart(ctx, {
   },
 });
 //fine doughnut chart (cerchio risultati)
-
 //---------------------------------------- 4 PAGINA (nicola)--------------------------///
 // Quando il documento è completamente caricato, esegui le seguenti istruzioni
 document.addEventListener("DOMContentLoaded", function() {
