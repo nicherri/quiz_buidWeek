@@ -279,7 +279,7 @@ function showdomanda() {
       const selectedAnswer = this.querySelector("#ansvalue").textContent.trim();
       if (selectedAnswer === currentdomanda.correct_answer) {
         score++;
-        localStorage.setItem('score', score); // Salva lo score nello storage locale
+        localStorage.setItem("score", score); // Salva lo score nello storage locale
       }
     });
   });
@@ -303,7 +303,7 @@ function showNextdomanda() {
       showdomanda();
     }, 300);
   } else {
-   window.location = "./risultati.html"
+    window.location = "./risultati.html";
   }
 }
 
@@ -314,40 +314,34 @@ window.onload = function () {
 };
 
 //-----------------------------------Inizio terza pagina (Flavio)--------------------------------------
-const risposteTotali = domandas.length; /// risposte totali da non cambiare, sono 10
-const risposteCorrette = localStorage.getItem('score'); // metti variabile / da cambiare
-const risposteSbagliate = risposteTotali - risposteCorrette; // metti variabile / da cambiare
+const risposteTotali = domandas.length;
+const risposteCorrette = localStorage.getItem("score") || 0;
+const risposteSbagliate = risposteTotali - risposteCorrette;
 
-const totaleRisposte = risposteCorrette + risposteSbagliate;
-const percentualeCorrette = (risposteCorrette / totaleRisposte) * 100;
-const percentualeSbagliate = (risposteSbagliate / totaleRisposte) * 100;
+// Calcola le percentuali in base al numero totale di domande
+const percentualeCorrette = Math.round((risposteCorrette / risposteTotali) * 100);
+const percentualeSbagliate = 100 - percentualeCorrette;
 
-//  percentuali nei paragrafi
-document.getElementById(
-  "percentualegiusta"
-).innerText = ` ${percentualeCorrette.toFixed(2)}%`;
-document.getElementById(
-  "percentualesbagliata"
-).innerText = ` ${percentualeSbagliate.toFixed(2)}%`;
+// Visualizza percentuali nei paragrafi
+document.getElementById("percentualegiusta").innerText = `${percentualeCorrette}%`;
+document.getElementById("percentualesbagliata").innerText = `${percentualeSbagliate}%`;
 
-// conteggio delle domande corrette e sbagliate nei paragrafi
-document.getElementById(
-  "domandegiuste"
-).innerText = `${risposteCorrette}/${risposteTotali} answers`;
-document.getElementById(
-  "domandesbagliate"
-).innerText = `${risposteSbagliate}/${risposteTotali} answers`;
+// Visualizza conteggio delle domande corrette e sbagliate nei paragrafi
+document.getElementById("domandegiuste").innerText = `${risposteCorrette}/${risposteTotali} answers`;
+document.getElementById("domandesbagliate").innerText = `${risposteSbagliate}/${risposteTotali} answers`;
 
+// Rimani dentro la canvas del grafico
 const canvas = document.getElementById("risposteChart");
 const ctx = canvas.getContext("2d");
-canvas.style.width = "400px"; // larghezza doughnut
-canvas.style.height = "400px"; // altezza doughnut
+canvas.style.width = "400px"; // Larghezza doughnut
+canvas.style.height = "400px"; // Altezza doughnut
 
-const congratulationText = //testo per aver superato
+const congratulationText = // Testo per aver superato
   "Congratulations! You passed the exam. We'll send you the certificate in few minutes. Check your email (including promotions / spam folder)";
-const failedText = //testo per aver fallito
+const failedText = // Testo per aver fallito
   "Oh no! You failed the exam. We'll send you the details in few minutes. Check your email (including promotions / spam folder)";
 
+// Rimani dentro il grafico
 const risposteChart = new Chart(ctx, {
   type: "doughnut",
   data: {
@@ -358,40 +352,29 @@ const risposteChart = new Chart(ctx, {
           "rgba(0, 255, 255)", // Colore per risposte corrette nel grafico
           "rgba(194, 18, 141)", // Colore per risposte sbagliate nel grafico
         ],
-        borderWidth: 0, //tolgo bordi
+        borderWidth: 0, // Rimuovi i bordi
       },
     ],
   },
   options: {
-    cutout: 150, //spessore cerchio
-    responsive: false, //lo centra nel div
+    cutout: 150, // Spessore cerchio
+    responsive: false, // Centra il grafico nel div
     plugins: {
       legend: {
-        display: false, //toglie la legenda sopra al grafico
+        display: false, // Rimuovi la legenda sopra al grafico
       },
     },
-    //testo dentro al grafico
+    // Testo dentro al grafico
     animation: {
       onProgress: function () {
         const width = canvas.width;
         const height = canvas.height;
-        const percentualeCorrette =
-          (risposteCorrette / (risposteCorrette + risposteSbagliate)) * 100;
 
-        //quale testo mostrare in base a fail o success
-        let displayText = "";
-        if (percentualeCorrette >= 60) {
-          displayText = congratulationText;
-          ctx.fillStyle = "rgba(0, 255, 255)";
-        } else {
-          displayText = failedText;
-          ctx.fillStyle = "rgba(194, 18, 141)";
-        }
-        const fontSize = 18; //grandezza font testo centrale
-        const x = width / 2; //posizione orizzontale testo all interno
-        const y = height / 3; //posizione verticale testo all interno
+        const fontSize = 18; // Grandezza font testo centrale
+        const x = width / 2; // Posizione orizzontale testo all'interno
+        const y = height / 3; // Posizione verticale testo all'interno
 
-        ctx.font = fontSize + "px sans-serif"; //font testo centrale
+        ctx.font = fontSize + "px sans-serif"; // Font testo centrale
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
 
@@ -414,7 +397,19 @@ const risposteChart = new Chart(ctx, {
           ctx.fillText(line, x, y);
         }
         var maxWidth = width * 0.6;
-        var lineHeight = fontSize * 1.8; //spaziatura linee nel testo
+        var lineHeight = fontSize * 1.8; // Spaziatura linee nel testo
+
+        // Determina quale testo mostrare in base al superamento o al fallimento dell'esame
+        let displayText = "";
+        if (percentualeCorrette >= 60) {
+          displayText = congratulationText;
+          ctx.fillStyle = "rgba(0, 255, 255)";
+        } else {
+          displayText = failedText;
+          ctx.fillStyle = "rgba(194, 18, 141)";
+        }
+
+        // Chiama la funzione wrapText per visualizzare il testo in modo appropriato nel canvas
         wrapText(displayText, x, y, maxWidth, lineHeight);
       },
     },
@@ -423,8 +418,7 @@ const risposteChart = new Chart(ctx, {
 //fine doughnut chart (cerchio risultati)
 //---------------------------------------- 4 PAGINA (nicola)--------------------------///
 // Quando il documento è completamente caricato, esegui le seguenti istruzioni
-document.addEventListener("DOMContentLoaded", function() {
-    
+document.addEventListener("DOMContentLoaded", function () {
   // Seleziona tutte le immagini all'interno dell'elemento con id "stelle"
   const stars = document.querySelectorAll("#stelle img");
 
@@ -433,16 +427,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Array per memorizzare i commenti in base alla valutazione
   const commentStyles = [
-      "Insufficient!", // 1
-      "Insufficient!", // 2
-      "Insufficient!", // 3
-      "Insufficient!", // 4
-      "Insufficient!", // 5
-      "Sufficient!",   // 6
-      "Discrete!",     // 7
-      "Excellent!",    // 8
-      "Outstanding!",  // 9
-      "Fantastic!"     // 10
+    "Insufficient!", // 1
+    "Insufficient!", // 2
+    "Insufficient!", // 3
+    "Insufficient!", // 4
+    "Insufficient!", // 5
+    "Sufficient!", // 6
+    "Discrete!", // 7
+    "Excellent!", // 8
+    "Outstanding!", // 9
+    "Fantastic!", // 10
   ];
 
   // Crea un nuovo elemento <p> per il testo del commento
@@ -457,42 +451,40 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Itera su ciascuna stella
   stars.forEach((star, index) => {
+    // Aggiungi un listener per l'evento mouseover (passaggio del mouse)
+    star.addEventListener("mouseover", function (event) {
+      // Imposta il testo del commento in base all'indice della stella
+      commentText.textContent = commentStyles[index];
+      // Evidenzia tutte le stelle fino alla stella corrente
+      for (let i = 0; i <= index; i++) {
+        stars[i].classList.add("active");
+      }
+    });
 
-      // Aggiungi un listener per l'evento mouseover (passaggio del mouse)
-      star.addEventListener("mouseover", function(event) {
-          // Imposta il testo del commento in base all'indice della stella
-          commentText.textContent = commentStyles[index];
-          // Evidenzia tutte le stelle fino alla stella corrente
-          for (let i = 0; i <= index; i++) {
-              stars[i].classList.add("active");
-          }
+    // Aggiungi un listener per l'evento mouseout (uscita del mouse)
+    star.addEventListener("mouseout", function (event) {
+      // Rimuovi l'evidenziazione di tutte le stelle
+      stars.forEach((s, i) => {
+        s.classList.remove("active");
+      });
+    });
+
+    // Aggiungi un listener per l'evento click su ciascuna stella
+    star.addEventListener("click", function () {
+      // Assegna la valutazione corrispondente all'indice della stella
+      rating = index + 1;
+
+      // Rimuovi eventuali stili aggiuntivi su altre stelle
+      stars.forEach((s, i) => {
+        if (i <= index) {
+          s.classList.add("clicked"); // Aggiungi classe "clicked"
+        } else {
+          s.classList.remove("clicked"); // Rimuovi classe "clicked"
+        }
       });
 
-      // Aggiungi un listener per l'evento mouseout (uscita del mouse)
-      star.addEventListener("mouseout", function(event) {
-          // Rimuovi l'evidenziazione di tutte le stelle
-          stars.forEach((s, i) => {
-              s.classList.remove("active");
-          });
-      });
-
-      // Aggiungi un listener per l'evento click su ciascuna stella
-      star.addEventListener("click", function() {
-          // Assegna la valutazione corrispondente all'indice della stella
-          rating = index + 1;
-
-          // Rimuovi eventuali stili aggiuntivi su altre stelle
-          stars.forEach((s, i) => {
-              if (i <= index) {
-                  s.classList.add("clicked"); // Aggiungi classe "clicked"
-              } else {
-                  s.classList.remove("clicked"); // Rimuovi classe "clicked"
-              }
-          });
-          
-          // Imposta il testo del commento in base alla valutazione
-          commentText.textContent = commentStyles[index];
-      });
+      // Imposta il testo del commento in base alla valutazione
+      commentText.textContent = commentStyles[index];
+    });
   });
-
 });
