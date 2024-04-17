@@ -303,9 +303,7 @@ function showNextdomanda() {
    window.location = "./risultati.html"
 }
 }
-if (score > 1){
-  console.log(giusteeee)
-}
+
 // Aggiungi un gestore di eventi per il contenitore dei pulsanti delle risposte
 
 window.onload = function () {
