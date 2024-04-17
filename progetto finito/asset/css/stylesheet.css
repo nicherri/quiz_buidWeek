@@ -41,16 +41,16 @@ body {
     margin: 0
 }
 
-p {
+#par1pag {
     font-family:Arial, Helvetica, sans-serif;
     margin: 0 0 7vh 0
 }
 
-ul {
+#ul1pagina {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-form {
+.form-flex {
     margin-top: 10vh;
     font-family: "Poppins", sans-serif;
     margin-bottom: 7vh;
@@ -92,7 +92,7 @@ form {
 /*----------------------------seconda pagina --------------------------------------------------*/
 
 
-h1 {
+#domanda {
     color: white;
 }
 
@@ -284,14 +284,14 @@ h1 {
 /*--------------------------4 pagina stile-----------------------*/
 
 /* Stile della sezione principale */
-section{
+#section4pagina{
     width: 80%;
     margin: 0 auto;
     text-align: center;
 }
 
 /* Stile del titolo */
-h1{
+#h1Pag4{
     font-size: 4.2em;
     padding:0 auto ;
 }
@@ -315,7 +315,7 @@ h1{
 }
 
 /* Stile dell'input del modulo */
-form input{
+#scrittura input{
     width: 100%;
     background: transparent;
     border: none;
