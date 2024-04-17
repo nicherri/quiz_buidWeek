@@ -166,7 +166,8 @@ body {
     position: relative;
     width: 100px;
     height: 100px;
-    margin-left: 80%;
+    margin-left: 90%;
+    margin-top: -3em;
   }
   
   .base-timer__svg {
