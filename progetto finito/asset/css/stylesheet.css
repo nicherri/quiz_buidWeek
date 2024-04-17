@@ -107,12 +107,11 @@ body {
 
 #button_risposte{
   margin-top: 60px;
-  width: 80vw;
   display: inline-block;
 } 
 
 .risposta {
-    width: 35vw;
+    width: 30vw;
     height: 7vh;
     margin: 15px;
     border-radius: 100px;
