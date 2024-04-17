@@ -288,17 +288,6 @@ function resetState() {
   }
 }
 
-function showScore() {
-  resetState();
-  domandaElement.innerHTML = `
-  <a href="./risultati.html">
-  <button id="btnrst">
-      Show results
-  </button>
-  </a>
-  `;
-}
-
 function showNextdomanda() {
   if (domandaNumber < domandas.length - 1) {
     domandaNumber++;
@@ -315,6 +304,17 @@ function showNextdomanda() {
     question_n.innerHTML = ""; //numero della domanda
     totdomande.innerHTML = ""; // num tot domande
   }
+}
+
+function showScore() {
+  resetState();
+  domandaElement.innerHTML = `
+    <a href="./risultati.html">
+    <button id="btnrst">
+        Show results
+    </button>
+    </a>
+    `;
 }
 
 // Aggiungi un gestore di eventi per il contenitore dei pulsanti delle risposte
