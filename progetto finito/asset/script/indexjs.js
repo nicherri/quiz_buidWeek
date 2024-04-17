@@ -436,8 +436,8 @@ const risposteChart = new Chart(ctx, {
 //fine doughnut chart (cerchio risultati)
 
 //---------------------------------------- 4 PAGINA (nicola)--------------------------///
-// Quando il documento è completamente caricato, esegui le seguenti istruzioni
-document.addEventListener("DOMContentLoaded", function () {
+window.onload = function() {
+    
   // Seleziona tutte le immagini all'interno dell'elemento con id "stelle"
   const stars = document.querySelectorAll("#stelle img");
 
@@ -446,16 +446,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Array per memorizzare i commenti in base alla valutazione
   const commentStyles = [
-    "Insufficient!", // 1
-    "Insufficient!", // 2
-    "Insufficient!", // 3
-    "Insufficient!", // 4
-    "Insufficient!", // 5
-    "Sufficient!", // 6
-    "Discrete!", // 7
-    "Excellent!", // 8
-    "Outstanding!", // 9
-    "Fantastic!", // 10
+      "Insufficient!", // 1
+      "Insufficient!", // 2
+      "Insufficient!", // 3
+      "Insufficient!", // 4
+      "Insufficient!", // 5
+      "Sufficient!",   // 6
+      "Discrete!",     // 7
+      "Excellent!",    // 8
+      "Outstanding!",  // 9
+      "Fantastic!"     // 10
   ];
 
   // Crea un nuovo elemento <p> per il testo del commento
@@ -470,42 +470,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Itera su ciascuna stella
   stars.forEach((star, index) => {
-    // Aggiungi un listener per l'evento mouseover (passaggio del mouse)
-    star.addEventListener("mouseover", function (event) {
-      // Imposta il testo del commento in base all'indice della stella
-      commentText.textContent = commentStyles[index];
-    });
 
-    // Aggiungi un listener per l'evento click su ciascuna stella
-    star.addEventListener("click", function () {
-      // Assegna la valutazione corrispondente all'indice della stella
-      rating = index + 1;
+      // Aggiungi un listener per l'evento mouseover (passaggio del mouse)
+      star.addEventListener("mouseover", function(event) {
 
-      // Rimuovi eventuali stili aggiuntivi su altre stelle
-      stars.forEach((s, i) => {
-        if (i <= index) {
-          s.classList.add("clicked"); // Aggiungi classe "clicked"
-        } else {
-          s.classList.remove("clicked"); // Rimuovi classe "clicked"
-        }
+          // Imposta il testo del commento in base all'indice della stella
+          commentText.textContent = commentStyles[index];
       });
 
-      // Imposta il testo del commento in base alla valutazione
-      commentText.textContent = commentStyles[index];
-    });
+      // Aggiungi un listener per l'evento click su ciascuna stella
+      star.addEventListener("click", function() {
+          // Assegna la valutazione corrispondente all'indice della stella
+          rating = index + 1;
 
-    // Aggiungi un listener per l'evento mouseout (uscita del mouse) da ciascuna stella
-    star.addEventListener("mouseout", function () {
-      // Rimuovi il testo del commento quando il mouse esce dalla stella
-      // solo se non è stato cliccato alcuna stella
-      if (rating === 0) {
-        commentText.textContent = "";
-      }
-    });
+          // Rimuovi eventuali stili aggiuntivi su altre stelle
+          stars.forEach((s, i) => {
+              if (i <= index) {
+                  s.classList.add("clicked"); // Aggiungi classe "clicked"
+              } else {
+                  s.classList.remove("clicked"); // Rimuovi classe "clicked"
+              }
+          });
+          
+          // Imposta il testo del commento in base alla valutazione
+          commentText.textContent = commentStyles[index];
+      });
   });
+};
 
-  // Aggiungi un listener per l'evento click sul pulsante di invio
-  document
-    .getElementById("creafeedback")
-    .addEventListener("click", aggiungiFeedback);
-});
