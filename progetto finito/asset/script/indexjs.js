@@ -451,84 +451,84 @@ const risposteChart = new Chart(ctx, {
 
 
 //---------------------------------------- 4 PAGINA (nicola)--------------------------///
-document.addEventListener("DOMContentLoaded", function() {
-    
-    // Seleziona tutte le immagini all'interno dell'elemento con id "stelle"
-    const stars = document.querySelectorAll("#stelle img");
+window.onload = function() {
+  // Seleziona tutte le immagini all'interno dell'elemento con id "stelle"
+  const stars = document.querySelectorAll("#stelle img");
 
-    // Variabile per memorizzare la valutazione dell'utente
-    let rating = 0;
+  // Variabile per memorizzare la valutazione dell'utente
+  let rating = 0;
 
-    // Array per memorizzare i commenti in base alla valutazione
-    const commentStyles = [
-        "Insufficient!", // 1
-        "Insufficient!", // 2
-        "Insufficient!", // 3
-        "Insufficient!", // 4
-        "Insufficient!", // 5
-        "Sufficient!",   // 6
-        "Discrete!",     // 7
-        "Excellent!",    // 8
-        "Outstanding!",  // 9
-        "Fantastic!"     // 10
-    ];
+  // Array per memorizzare i commenti in base alla valutazione
+  const commentStyles = [
+      "Insufficient!", // 1
+      "Insufficient!", // 2
+      "Insufficient!", // 3
+      "Insufficient!", // 4
+      "Insufficient!", // 5
+      "Sufficient!",   // 6
+      "Discrete!",     // 7
+      "Excellent!",    // 8
+      "Outstanding!",  // 9
+      "Fantastic!"     // 10
+  ];
 
-    // Crea un nuovo elemento <p> per il testo del commento
-    const commentText = document.createElement("p");
+  // Crea un nuovo elemento <p> per il testo del commento
+  const commentText = document.createElement("p");
 
-    // Imposta la classe "comment-text" al paragrafo
-    commentText.classList.add("comment-text");
+  // Imposta la classe "comment-text" al paragrafo
+  commentText.classList.add("comment-text");
 
-    // Aggiungi il paragrafo al contenitore delle stelle
-    const starsContainer = document.getElementById("stelle");
-    starsContainer.appendChild(commentText);
+  // Aggiungi il paragrafo al contenitore delle stelle
+  const starsContainer = document.getElementById("stelle");
+  starsContainer.appendChild(commentText);
 
-    // Itera su ciascuna stella
-    stars.forEach((star, index) => {
+  // Itera su ciascuna stella
+  stars.forEach((star, index) => {
 
-        // Aggiungi un listener per l'evento mouseover (passaggio del mouse)
-        star.addEventListener("mouseover", function(event) {
+      // Aggiungi un listener per l'evento mouseover (passaggio del mouse)
+      star.addEventListener("mouseover", function(event) {
 
-            // Imposta il testo del commento in base all'indice della stella
-            commentText.textContent = commentStyles[index];
-        });
+          // Imposta il testo del commento in base all'indice della stella
+          commentText.textContent = commentStyles[index];
+      });
 
-        // Aggiungi un listener per l'evento click su ciascuna stella
-        star.addEventListener("click", function() {
-            // Assegna la valutazione corrispondente all'indice della stella
-            rating = index + 1;
+      // Aggiungi un listener per l'evento click su ciascuna stella
+      star.addEventListener("click", function() {
+          // Assegna la valutazione corrispondente all'indice della stella
+          rating = index + 1;
 
-            // Rimuovi eventuali stili aggiuntivi su altre stelle
-            stars.forEach((s, i) => {
-                if (i <= index) {
-                    s.classList.add("clicked"); // Aggiungi classe "clicked"
-                } else {
-                    s.classList.remove("clicked"); // Rimuovi classe "clicked"
-                }
-            });
-            
-            // Imposta il testo del commento in base alla valutazione
-            commentText.textContent = commentStyles[index];
-        });
+          // Rimuovi eventuali stili aggiuntivi su altre stelle
+          stars.forEach((s, i) => {
+              if (i <= index) {
+                  s.classList.add("clicked"); // Aggiungi classe "clicked"
+              } else {
+                  s.classList.remove("clicked"); // Rimuovi classe "clicked"
+              }
+          });
+          
+          // Imposta il testo del commento in base alla valutazione
+          commentText.textContent = commentStyles[index];
+      });
 
-        // Aggiungi un listener per l'evento mouseout (uscita del mouse) da ciascuna stella
-        star.addEventListener("mouseout", function() {
-            // Rimuovi il testo del commento quando il mouse esce dalla stella
-            // solo se non è stato cliccato alcuna stella
-            if (rating === 0) {
-                commentText.textContent = "";
-            }
-        });
-    });
+      // Aggiungi un listener per l'evento mouseout (uscita del mouse) da ciascuna stella
+      star.addEventListener("mouseout", function() {
+          // Rimuovi il testo del commento quando il mouse esce dalla stella
+          // solo se non è stato cliccato alcuna stella
+          if (rating === 0) {
+              commentText.textContent = "";
+          }
+      });
+  });
 
-    // Aggiungi un listener per l'evento "DOMContentLoaded" solo se l'elemento con ID "creafeedback" esiste
-    const creaFeedbackButton = document.getElementById("creafeedback");
-    if (creaFeedbackButton) {
-        creaFeedbackButton.addEventListener("click", aggiungiFeedback);
-    }
-});
+  // Aggiungi un listener per l'evento "click" sul pulsante "creafeedback"
+  const creaFeedbackButton = document.getElementById("creafeedback");
+  if (creaFeedbackButton) {
+      creaFeedbackButton.addEventListener("click", aggiungiFeedback);
+  }
+};
 
 // Definisci una funzione per aggiungere il feedback
 const aggiungiFeedback = function(event) {
-    // Implementazione della funzione aggiungiFeedback
+  // Implementazione della funzione aggiungiFeedback
 };
+
