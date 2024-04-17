@@ -6,13 +6,11 @@ body {
     color: white; 
     width: 70%;
     margin: 0 auto;
-    text-align: left;}
-
-#logo_epicode {
+}
+#logo_epicode{
     width: 20%;
     margin-bottom: 2.8vh;
 }
-
 
 .welcome {
     font-size: 80px; /* dimensione del testo per "Welcome to" */
