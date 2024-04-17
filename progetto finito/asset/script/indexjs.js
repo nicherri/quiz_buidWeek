@@ -451,9 +451,7 @@ const risposteChart = new Chart(ctx, {
 
 
 //---------------------------------------- 4 PAGINA (nicola)--------------------------///
-/// Quando il documento è completamente caricato, esegui le seguenti istruzioni
-document.addEventListener("DOMContentLoaded", function() {
-    
+window.onload = function() {
   // Seleziona tutte le immagini all'interno dell'elemento con id "stelle"
   const stars = document.querySelectorAll("#stelle img");
 
@@ -521,9 +519,3 @@ document.addEventListener("DOMContentLoaded", function() {
           }
       });
   });
-
-
-
-  // Aggiungi un listener per l'evento click sul pulsante di invio
-  document.getElementById("creafeedback").addEventListener("click", aggiungiFeedback);
-});
