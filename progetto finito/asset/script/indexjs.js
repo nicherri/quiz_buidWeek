@@ -247,6 +247,7 @@ const totdom = document.getElementById("totdomande");
 let domandaNumber = 0;
 let score = 0;
 
+// Funzione per mostrare la domanda corrente
 function showdomanda() {
   restartTimer();
   let currentdomanda = domandas[domandaNumber];
@@ -278,18 +279,20 @@ function showdomanda() {
       const selectedAnswer = this.querySelector("#ansvalue").textContent.trim();
       if (selectedAnswer === currentdomanda.correct_answer) {
         score++;
+        localStorage.setItem('score', score); // Salva lo score nello storage locale
       }
     });
   });
 }
 
-
+// Funzione per reimpostare lo stato
 function resetState() {
   while (answerButtons.firstChild) {
     answerButtons.removeChild(answerButtons.firstChild);
   }
 }
 
+// Funzione per mostrare la prossima domanda
 function showNextdomanda() {
   if (domandaNumber < domandas.length - 1) {
     domandaNumber++;
@@ -301,11 +304,10 @@ function showNextdomanda() {
     }, 300);
   } else {
    window.location = "./risultati.html"
-}
+  }
 }
 
 // Aggiungi un gestore di eventi per il contenitore dei pulsanti delle risposte
-
 window.onload = function () {
   showdomanda();
   answerButtons.addEventListener("click", showNextdomanda);
@@ -313,7 +315,7 @@ window.onload = function () {
 
 //-----------------------------------Inizio terza pagina (Flavio)--------------------------------------
 const risposteTotali = domandas.length; /// risposte totali da non cambiare, sono 10
-const risposteCorrette = score; // metti variabile / da cambiare
+const risposteCorrette = localStorage.getItem('score'); // metti variabile / da cambiare
 const risposteSbagliate = risposteTotali - risposteCorrette; // metti variabile / da cambiare
 
 const totaleRisposte = risposteCorrette + risposteSbagliate;
