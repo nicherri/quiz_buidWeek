@@ -1,0 +1,373 @@
+body {
+    background-image: url("../img/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 3% 8% 0% 8%;
+    color: white; 
+    width: 70%;
+    margin: 0 auto;
+    text-align: left;}
+
+#logo_epicode {
+    width: 20%;
+    margin-bottom: 2.8vh;
+}
+
+
+.welcome {
+    font-size: 80px; /* dimensione del testo per "Welcome to" */
+    line-height: 1;
+    font-family: "Jost", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 350;
+    font-style: normal;
+}
+
+.exam {
+    font-size: 60px;
+    font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#viola {
+    color: #BF128C;
+    font-family: "Poppins", sans-serif;
+    font-size: 2em;
+    margin: 0
+}
+
+p {
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 0 0 7vh 0
+}
+
+ul {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form {
+    margin-top: 10vh;
+    font-family: "Poppins", sans-serif;
+    margin-bottom: 7vh;
+}
+
+#btn {
+    color: rgb(41, 0, 35);
+    background-color: #00FFFF;
+    border: none;
+    box-shadow: 0 0 10px #00FFFF;
+    cursor: pointer; 
+    font-size: 1.5em;
+    margin-left: 13em;
+    height: 4rem;
+    width: 12em;
+}
+
+
+.form-flex {
+    display: flex;
+    align-items: center; /* Allinea verticalmente gli elementi */
+}
+
+.input-group {
+    display: flex; /* Rendi i suoi figli un flex item */
+    align-items: center; /* Allinea verticalmente gli elementi */
+    margin-bottom: 10px; /* Aggiungi spazio tra i gruppi di input */
+}
+
+.input-group input {
+    margin-right: 10px; /* Aggiungi spazio tra l'input e il testo */
+}
+
+.flex-grow {
+    flex-grow: 1; /* Fai espandere lo span per occupare lo spazio rimanente */
+    width: max-content;
+}
+
+/*----------------------------seconda pagina --------------------------------------------------*/
+
+
+h1 {
+    color: white;
+}
+
+#quiz {
+    text-align: center;  
+    font-size: 1em;
+    margin-top: 70px;
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#button_risposte{
+  margin-top: 60px;
+  width: 80vw;
+  display: inline-block;
+} 
+
+.risposta {
+    width: 35vw;
+    height: 7vh;
+    margin: 15px;
+    border-radius: 100px;
+    background: transparent; 
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none; 
+    font-size: 1.1em;
+    box-shadow: 0 -1.5px 1px 2px rgba(244, 242, 242, 0.915);
+}
+
+
+.risposta:hover {
+  cursor: pointer;
+  background: rgba(237, 26, 230, 0.626);
+}
+
+#question {
+    text-align: center;
+    margin-top: 100px;
+}
+
+#ndomanda {
+    color: white;
+}
+
+#totdomande {
+    color: rgb(219, 37, 97);
+}
+
+.score{
+  font-size: 2.5em;
+  margin-top: 15%;
+}
+
+
+
+/****************** inizio css timer ****************/
+
+.base-timer {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-left: 80%;
+  }
+  
+  .base-timer__svg {
+    transform: scaleX(-1);
+  }
+  
+  .base-timer__circle {
+    fill: none;
+    stroke: none;
+  }
+  
+  .base-timer__path-elapsed {
+    stroke-width: 10px;
+    stroke: grey;
+  }
+  
+  .base-timer__path-remaining {
+    stroke-width: 10px;
+    stroke-linecap: round;
+    transform: rotate(90deg);
+    transform-origin: center;
+    transition: 1s linear all;
+    fill-rule: nonzero;
+    stroke: currentColor;
+  }
+  
+  .base-timer__path-remaining.green {
+    color: rgb(3, 227, 238);
+  }
+  
+  .base-timer__path-remaining.orange {
+    color: orange;
+  }
+  
+  .base-timer__path-remaining.red {
+    color: red;
+  }
+  
+  .base-timer__label {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 35px;
+    margin-left: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: white;
+  }
+
+  /*---------------------------------------CSS terza pagina-------------------------------------*/
+  
+
+#top_text h2{
+    margin: 0;
+    font-weight: bold;
+    font-size: 4vw;
+    text-align: center;
+}
+#top_text h4{
+    margin: 0 0 4vh 0;
+    text-align: center;
+    font-size: 2vw
+}
+
+#container{
+    margin: auto;
+  padding: 10px;
+  margin-bottom:5vh;
+  text-align: center;
+  display:flex;
+  justify-content: space-between;
+  align-items: center; /* Centra il contenuto verticalmente */
+}
+
+#container > div {
+    flex-grow: 1;
+}
+
+#container > div:first-child,
+#container > div:last-child {
+    flex-basis: 50%;
+}
+.scritturaGiustaESbagliata{ /*corretto e wrong*/
+    font-size: 4.7em;
+    margin: 0;
+}
+
+#percentualegiusta, #percentualesbagliata { /*numeri e percentuale*/
+    font-size: 4.7em;
+    font-weight: 700;
+    margin: 0;
+}
+
+#domandegiuste, #domandesbagliate{ /*    tot/10   */
+    font-size: 2em;
+    margin: 0;
+}
+
+#percentualegiusta, #domandegiuste, #correctB{ /*testo a sx del grafico*/
+    color: rgb(0, 255,255)
+}
+#percentualesbagliata, #domandesbagliate, #wrongV{   /*testo a dx del grafico*/
+    color:rgb(194, 18, 141)
+}
+
+#btndiv{
+    text-align: center;
+}
+#rateUs{ /*bottone in fondo*/
+    background: none;
+    border: 1px solid white;
+    box-shadow: 0 0 10px #00FFFF;
+    box-shadow: 0 0 10px #00FFFF;
+    color: white;
+    padding: 8px 26px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 2vw
+}
+
+/*--------------------------4 pagina stile-----------------------*/
+
+/* Stile della sezione principale */
+section{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Stile del titolo */
+h1{
+    font-size: 4.2em;
+    padding:0 auto ;
+}
+
+/* Stile del testo generico */
+.testo{
+    font-size: 2.1em;
+}
+
+/* Stile del testo all'interno del tag span */
+.testospan{
+    font-size: 2.3em;
+}
+
+/* Stile delle stelle per la valutazione */
+#stelle{
+    padding-bottom: 1.4em;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+/* Stile dell'input del modulo */
+form input{
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: solid 2px #C40090;
+    height: 6vh;
+    font-size: 4vh;
+    color: white;
+    padding-left: 15px;
+}
+
+/* Stile del pulsante "More Info" */
+.styleButton4Pagina{
+    background-color: #00FFFF;
+    border: none;
+    margin-top: 1.4em;
+    width: 10em;
+    height: 3em;
+    font-weight: 700;
+    box-shadow: 0 0 15px #00FFFF; 
+    cursor: pointer;
+}
+
+/* Stile delle immagini delle stelle */
+#stelle img {
+    opacity: 0.1;
+    transition: opacity 0.2s ease;
+    cursor: pointer;
+}
+
+/* Stile delle immagini delle stelle al passaggio del mouse */
+#stelle img:hover,
+#stelle img.active {
+    opacity: 0.6;
+}
+
+/* Stile delle immagini delle stelle cliccate */
+#stelle img.clicked {
+    opacity: 1;
+}
+
+/* Stile del testo del commento */
+.comment-text {
+    margin: 0; 
+    margin-left: 10px; /* Aggiunge uno spazio tra le stelle e il paragrafo */
+    font-size: 1.5em; /* Imposta la dimensione del carattere del commento */
+    color: #faf6f6;
+    align-self: center; /* Colore del testo del commento */
+}
+
+/* Stile per il commento visibile */
+.comment-text.visible {
+    display: inline-block;
+    align-self: center;
+}
+
