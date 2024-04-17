@@ -451,7 +451,6 @@ const risposteChart = new Chart(ctx, {
 
 
 //---------------------------------------- 4 PAGINA (nicola)--------------------------///
-// Quando il documento è completamente caricato, esegui le seguenti istruzioni
 document.addEventListener("DOMContentLoaded", function() {
     
     // Seleziona tutte le immagini all'interno dell'elemento con id "stelle"
@@ -522,8 +521,14 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-  
-
-    // Aggiungi un listener per l'evento click sul pulsante di invio
-    document.getElementById("creafeedback").addEventListener("click", aggiungiFeedback);
+    // Aggiungi un listener per l'evento "DOMContentLoaded" solo se l'elemento con ID "creafeedback" esiste
+    const creaFeedbackButton = document.getElementById("creafeedback");
+    if (creaFeedbackButton) {
+        creaFeedbackButton.addEventListener("click", aggiungiFeedback);
+    }
 });
+
+// Definisci una funzione per aggiungere il feedback
+const aggiungiFeedback = function(event) {
+    // Implementazione della funzione aggiungiFeedback
+};
