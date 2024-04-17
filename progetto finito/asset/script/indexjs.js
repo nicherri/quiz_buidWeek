@@ -417,8 +417,8 @@ const risposteChart = new Chart(ctx, {
 });
 //fine doughnut chart (cerchio risultati)
 //---------------------------------------- 4 PAGINA (nicola)--------------------------///
-// Quando il documento è completamente caricato, esegui le seguenti istruzioni
-document.addEventListener("DOMContentLoaded", function () {
+// Definizione della funzione per la gestione delle stelle
+function initStarRating() {
   // Seleziona tutte le immagini all'interno dell'elemento con id "stelle"
   const stars = document.querySelectorAll("#stelle img");
 
@@ -427,16 +427,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Array per memorizzare i commenti in base alla valutazione
   const commentStyles = [
-    "Insufficient!", // 1
-    "Insufficient!", // 2
-    "Insufficient!", // 3
-    "Insufficient!", // 4
-    "Insufficient!", // 5
-    "Sufficient!", // 6
-    "Discrete!", // 7
-    "Excellent!", // 8
-    "Outstanding!", // 9
-    "Fantastic!", // 10
+      "Insufficient!", // 1
+      "Insufficient!", // 2
+      "Insufficient!", // 3
+      "Insufficient!", // 4
+      "Insufficient!", // 5
+      "Sufficient!",   // 6
+      "Discrete!",     // 7
+      "Excellent!",    // 8
+      "Outstanding!",  // 9
+      "Fantastic!"     // 10
   ];
 
   // Crea un nuovo elemento <p> per il testo del commento
@@ -451,40 +451,47 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Itera su ciascuna stella
   stars.forEach((star, index) => {
-    // Aggiungi un listener per l'evento mouseover (passaggio del mouse)
-    star.addEventListener("mouseover", function (event) {
-      // Imposta il testo del commento in base all'indice della stella
-      commentText.textContent = commentStyles[index];
-      // Evidenzia tutte le stelle fino alla stella corrente
-      for (let i = 0; i <= index; i++) {
-        stars[i].classList.add("active");
-      }
-    });
 
-    // Aggiungi un listener per l'evento mouseout (uscita del mouse)
-    star.addEventListener("mouseout", function (event) {
-      // Rimuovi l'evidenziazione di tutte le stelle
-      stars.forEach((s, i) => {
-        s.classList.remove("active");
-      });
-    });
-
-    // Aggiungi un listener per l'evento click su ciascuna stella
-    star.addEventListener("click", function () {
-      // Assegna la valutazione corrispondente all'indice della stella
-      rating = index + 1;
-
-      // Rimuovi eventuali stili aggiuntivi su altre stelle
-      stars.forEach((s, i) => {
-        if (i <= index) {
-          s.classList.add("clicked"); // Aggiungi classe "clicked"
-        } else {
-          s.classList.remove("clicked"); // Rimuovi classe "clicked"
-        }
+      // Aggiungi un listener per l'evento mouseover (passaggio del mouse)
+      star.addEventListener("mouseover", function(event) {
+          // Imposta il testo del commento in base all'indice della stella
+          commentText.textContent = commentStyles[index];
+          // Evidenzia tutte le stelle fino alla stella corrente
+          for (let i = 0; i <= index; i++) {
+              stars[i].classList.add("active");
+          }
       });
 
-      // Imposta il testo del commento in base alla valutazione
-      commentText.textContent = commentStyles[index];
-    });
+      // Aggiungi un listener per l'evento mouseout (uscita del mouse)
+      star.addEventListener("mouseout", function(event) {
+          // Rimuovi l'evidenziazione di tutte le stelle
+          stars.forEach((s, i) => {
+              s.classList.remove("active");
+          });
+      });
+
+      // Aggiungi un listener per l'evento click su ciascuna stella
+      star.addEventListener("click", function() {
+          // Assegna la valutazione corrispondente all'indice della stella
+          rating = index + 1;
+
+          // Rimuovi eventuali stili aggiuntivi su altre stelle
+          stars.forEach((s, i) => {
+              if (i <= index) {
+                  s.classList.add("clicked"); // Aggiungi classe "clicked"
+              } else {
+                  s.classList.remove("clicked"); // Rimuovi classe "clicked"
+              }
+          });
+          
+          // Imposta il testo del commento in base alla valutazione
+          commentText.textContent = commentStyles[index];
+      });
   });
-});
+}
+
+// Funzione da eseguire quando la finestra e tutti i suoi contenuti sono completamente caricati
+window.onload = function() {
+  // Chiamata alla funzione di inizializzazione delle stelle
+  initStarRating();
+};
