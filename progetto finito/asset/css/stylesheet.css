@@ -97,7 +97,7 @@ body {
 #quiz {
     text-align: center;  
     font-size: 1em;
-    margin-top: 70px;
+    margin-top: 3em; 
 }
 
 .fade {
@@ -146,15 +146,26 @@ body {
   font-size: 2.5em;
   margin-top: 15%;
 }
-
+#btnrst {
+    color: rgb(41, 0, 35);
+    background-color: #00FFFF;
+    border: none;
+    box-shadow: 0 0 10px #00FFFF;
+    cursor: pointer; 
+    font-size: 1.5em;
+    border-radius: 15px;
+    height: 4rem;
+    width: 8em;
+    margin-top: 10%;
+}
 
 
 /****************** inizio css timer ****************/
 
 .base-timer {
     position: relative;
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     margin-left: 80%;
   }
   
@@ -197,13 +208,13 @@ body {
   .base-timer__label {
     position: absolute;
     width: 50px;
-    height: 50px;
+    height: 30px;
     top: 35px;
-    margin-left: 35px;
+    margin-left: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
+    font-size: 2.2em;
     color: white;
   }
 
