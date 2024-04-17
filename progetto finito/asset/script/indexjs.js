@@ -436,7 +436,8 @@ const risposteChart = new Chart(ctx, {
 //fine doughnut chart (cerchio risultati)
 
 //---------------------------------------- 4 PAGINA (nicola)--------------------------///
-window.onload = function() {
+// Quando il documento è completamente caricato, esegui le seguenti istruzioni
+document.addEventListener("DOMContentLoaded", function() {
     
   // Seleziona tutte le immagini all'interno dell'elemento con id "stelle"
   const stars = document.querySelectorAll("#stelle img");
@@ -473,9 +474,20 @@ window.onload = function() {
 
       // Aggiungi un listener per l'evento mouseover (passaggio del mouse)
       star.addEventListener("mouseover", function(event) {
-
           // Imposta il testo del commento in base all'indice della stella
           commentText.textContent = commentStyles[index];
+          // Evidenzia tutte le stelle fino alla stella corrente
+          for (let i = 0; i <= index; i++) {
+              stars[i].classList.add("active");
+          }
+      });
+
+      // Aggiungi un listener per l'evento mouseout (uscita del mouse)
+      star.addEventListener("mouseout", function(event) {
+          // Rimuovi l'evidenziazione di tutte le stelle
+          stars.forEach((s, i) => {
+              s.classList.remove("active");
+          });
       });
 
       // Aggiungi un listener per l'evento click su ciascuna stella
@@ -496,5 +508,5 @@ window.onload = function() {
           commentText.textContent = commentStyles[index];
       });
   });
-};
 
+});
