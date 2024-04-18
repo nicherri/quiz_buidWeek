@@ -782,8 +782,9 @@ const numQuest = localStorage.getItem("numQuest");
 let domandaNumber = 0;
 let score = 0;
 
+
 // Funzione per mostrare la domanda corrente
-function showdomanda() {
+function showdomandaeasy() {
   restartTimer();
 
   let currentdomanda = domandas[domandaNumber];
@@ -827,6 +828,104 @@ allButtons.forEach((button) => {
 });
 }
 
+function showdomandamiddle() {
+  restartTimer();
+  let currentdomanda = questionsMiddle[domandaNumber];
+  let domandaNo = domandaNumber + 1;
+  if (domandaElement){domandaElement.innerHTML = currentdomanda.domanda;}
+  if (question_n){question_n.innerHTML = domandaNo;} //numero della domanda
+  if (totdomande){totdomande.innerHTML = "  " + "/ " + numQuest;} // num tot domande
+
+  let answers = [
+    currentdomanda.correct_answer,
+    ...currentdomanda.incorrect_answers,
+  ];
+ if (answerButtons) {answerButtons.innerHTML = "";}
+
+  while (answers.length > 0) {
+    let randomIndex = Math.floor(Math.random() * answers.length);
+    let newAnswer = `
+          <button class="risposta">
+              <span id="ansvalue">
+                  ${answers[randomIndex]}
+              </span>
+          </button>
+      `;
+    if (answerButtons){answerButtons.innerHTML += newAnswer;}
+    answers.splice(randomIndex, 1); // Rimuove la risposta inserita per evitare la duplicazione
+  }
+  const allButtons = document.querySelectorAll(".risposta");
+allButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const selectedAnswer = this;
+    const answerText = selectedAnswer.textContent.trim();
+    if (answerText === currentdomanda.correct_answer) {
+      selectedAnswer.classList.remove("risposta");
+      selectedAnswer.classList.add("correct");
+      localStorage.setItem("score", ++score); // Incremento dello score e salvataggio
+    } else {
+      selectedAnswer.classList.remove("risposta");
+      selectedAnswer.classList.add("wrong");
+    }
+  });
+});
+}
+
+function showdomandahard() {
+  restartTimer();
+  let currentdomanda = questionsDifficult[domandaNumber];
+  let domandaNo = domandaNumber + 1;
+  if (domandaElement){domandaElement.innerHTML = currentdomanda.domanda;}
+  if (question_n){question_n.innerHTML = domandaNo;} //numero della domanda
+  if (totdomande){totdomande.innerHTML = "  " + "/ " + numQuest;} // num tot domande
+
+  let answers = [
+    currentdomanda.correct_answer,
+    ...currentdomanda.incorrect_answers,
+  ];
+ if (answerButtons) {answerButtons.innerHTML = "";}
+
+  while (answers.length > 0) {
+    let randomIndex = Math.floor(Math.random() * answers.length);
+    let newAnswer = `
+          <button class="risposta">
+              <span id="ansvalue">
+                  ${answers[randomIndex]}
+              </span>
+          </button>
+      `;
+    if (answerButtons){answerButtons.innerHTML += newAnswer;}
+    answers.splice(randomIndex, 1); // Rimuove la risposta inserita per evitare la duplicazione
+  }
+  const allButtons = document.querySelectorAll(".risposta");
+allButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const selectedAnswer = this;
+    const answerText = selectedAnswer.textContent.trim();
+    if (answerText === currentdomanda.correct_answer) {
+      selectedAnswer.classList.remove("risposta");
+      selectedAnswer.classList.add("correct");
+      localStorage.setItem("score", ++score); // Incremento dello score e salvataggio
+    } else {
+      selectedAnswer.classList.remove("risposta");
+      selectedAnswer.classList.add("wrong");
+    }
+  });
+});
+}
+console.log(diff)
+if (localStorage.getItem("diff")==='easy'){
+  showdomandaeasy();
+}
+
+else if (localStorage.getItem("diff")==='middle'){
+  showdomandamiddle();
+}
+
+else if (localStorage.getItem("diff")==='hard'){
+  showdomandahard();
+}
+
 // Funzione per reimpostare lo stato
 function resetState() {
   while (answerButtons.firstChild) {
@@ -842,13 +941,13 @@ function showNextdomanda() {
     setTimeout(() => {
       // Rimuovi la classe dopo un breve ritardo
       divQuiz.classList.remove("fade");
-      showdomanda();
+ //     showdomanda();
     }, 500);
   } else {
     window.location = "./risultati.html";
   }
 }
-showdomanda()
+
 if (answerButtons){answerButtons.addEventListener("click", showNextdomanda);}
 //-----------------------------------Inizio terza pagina (Flavio)--------------------------------------
 const risposteTotali = numQuest;
