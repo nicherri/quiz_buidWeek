@@ -241,7 +241,7 @@ const divQuiz = document.getElementById("quiz");
 const domandaElement = document.getElementById("domanda");
 const answerButtons = document.getElementById("button_risposte");
 const question_n = document.getElementById("ndomanda");
-const totdom = document.getElementById("totdomande");
+const totdomande = document.getElementById("totdomande");
 
 let domandaNumber = 0;
 let score = 0;
@@ -258,7 +258,7 @@ function showdomanda() {
     currentdomanda.correct_answer,
     ...currentdomanda.incorrect_answers,
   ];
-  answerButtons.innerHTML = "";
+ if (answerButtons) {answerButtons.innerHTML = "";}
 
   while (answers.length > 0) {
     let randomIndex = Math.floor(Math.random() * answers.length);
@@ -269,7 +269,7 @@ function showdomanda() {
               </span>
           </button>
       `;
-    answerButtons.innerHTML += newAnswer;
+    if (answerButtons){answerButtons.innerHTML += newAnswer;}
     answers.splice(randomIndex, 1); // Rimuove la risposta inserita per evitare la duplicazione
   }
   const allButtons = document.querySelectorAll(".risposta");
