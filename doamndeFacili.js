@@ -1,4 +1,4 @@
-const questionsEasy = [ 
+const domandasEasy = [ 
     {
     category: "Computer Science",
     type: "multiple",
@@ -76,35 +76,32 @@ const questionsEasy = [
     type: "boolean",
     difficulty: "easy",
     domanda: "Programming is a fundamental component of computer science",
-    correct_answer: "true"
+    correct_answer: "true",
+    incorrect_answers: ["false"]
 },
 {
     category: "Computer Science",
     type: "boolean",
     difficulty: "easy",
     domanda: "The mouse is a common input device associated with a computer",
-    correct_answer: "true"
+    correct_answer: "true",
+    incorrect_answers: ["false"]
 },
 {
     category: "Computer Science",
     type: "boolean",
     difficulty: "easy",
     domanda: "Computers solve mathematical problems much more efficiently than humans",
-    correct_answer: "true"
+    correct_answer: "true",
+    incorrect_answers: ["false"]
 },
 {
     category: "Computer Science",
     type: "boolean",
     difficulty: "easy",
     domanda: "HTML is a programming language used to create web pages",
-    correct_answer: "false"
-},
-{
-    category: "Computer Science",
-    type: "boolean",
-    difficulty: "easy",
-    domanda: "Algorithms are step-by-step procedures for solving a specific problem",
-    correct_answer: "true"
+    correct_answer: "false",
+    incorrect_answers: ["true"]
 },
 
 ]
