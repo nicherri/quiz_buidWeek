@@ -418,48 +418,79 @@ const risposteChart = new Chart(ctx, {
 //fine doughnut chart (cerchio risultati)
 //---------------------------------------- 4 PAGINA (nicola)--------------------------///
 // Definizione della funzione per la gestione delle stelle
+initStarRating()
 function initStarRating() {
+  // Seleziona tutte le immagini all'interno dell'elemento con id "stelle"
   const stars = document.querySelectorAll("#stelle img");
+
+  // Variabile per memorizzare la valutazione dell'utente
   let rating = 0;
+
+  // Array per memorizzare i commenti in base alla valutazione
   const commentStyles = [
-      "Insufficient!", "Insufficient!", "Insufficient!", "Insufficient!", "Insufficient!",
-      "Sufficient!", "Discrete!", "Excellent!", "Outstanding!", "Fantastic!"
+      "Insufficient!", // 1
+      "Insufficient!", // 2
+      "Insufficient!", // 3
+      "Insufficient!", // 4
+      "Insufficient!", // 5
+      "Sufficient!",   // 6
+      "Discrete!",     // 7
+      "Excellent!",    // 8
+      "Outstanding!",  // 9
+      "Fantastic!"     // 10
   ];
+
+  // Crea un nuovo elemento <p> per il testo del commento
   const commentText = document.createElement("p");
+
+  // Imposta la classe "comment-text" al paragrafo
   commentText.classList.add("comment-text");
+
+  // Aggiungi il paragrafo al contenitore delle stelle
   const starsContainer = document.getElementById("stelle");
   starsContainer.appendChild(commentText);
 
-  for (let i = 0; i < stars.length; i++) {
-      const star = stars[i];
+  // Itera su ciascuna stella
+  stars.forEach((star, index) => {
+
+      // Aggiungi un listener per l'evento mouseover (passaggio del mouse)
       star.addEventListener("mouseover", function(event) {
-          commentText.textContent = commentStyles[i];
-          for (let j = 0; j <= i; j++) {
-              stars[j].classList.add("active");
+          // Imposta il testo del commento in base all'indice della stella
+          commentText.textContent = commentStyles[index];
+          // Evidenzia tutte le stelle fino alla stella corrente
+          for (let i = 0; i <= index; i++) {
+              stars[i].classList.add("active");
           }
       });
 
+      // Aggiungi un listener per l'evento mouseout (uscita del mouse)
       star.addEventListener("mouseout", function(event) {
-          for (let j = 0; j < stars.length; j++) {
-              stars[j].classList.remove("active");
-          }
+          // Rimuovi l'evidenziazione di tutte le stelle
+          stars.forEach((s, i) => {
+              s.classList.remove("active");
+          });
       });
 
+      // Aggiungi un listener per l'evento click su ciascuna stella
       star.addEventListener("click", function() {
-          rating = i + 1;
-          for (let j = 0; j < stars.length; j++) {
-              if (j <= i) {
-                  stars[j].classList.add("clicked");
+          // Assegna la valutazione corrispondente all'indice della stella
+          rating = index + 1;
+
+          // Rimuovi eventuali stili aggiuntivi su altre stelle
+          stars.forEach((s, i) => {
+              if (i <= index) {
+                  s.classList.add("clicked"); // Aggiungi classe "clicked"
               } else {
-                  stars[j].classList.remove("clicked");
+                  s.classList.remove("clicked"); // Rimuovi classe "clicked"
               }
-          }
-          commentText.textContent = commentStyles[i];
+          });
+          
+          // Imposta il testo del commento in base alla valutazione
+          commentText.textContent = commentStyles[index];
       });
-  }
+  });
 }
 
-window.onload = function() {
-  initStarRating();
-};
+
+ 
 
