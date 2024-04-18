@@ -130,7 +130,7 @@ body {
 
 .risposta:hover {
   cursor: pointer;
-  background: rgba(237, 26, 230, 0.626);
+  background: rgba(237, 26, 230, 0.288);
 }
 
 #question {
@@ -150,6 +150,31 @@ body {
   font-size: 2.5em;
   margin-top: 15%;
 }
+
+.correct{
+    width: 30vw;
+    height: 7vh;
+    margin: 15px;
+    border-radius: 100px;
+    background-color: green;
+    color: white;
+    border: none; 
+    font-size: 1.1em;
+    box-shadow: 0 -1.5px 1px 2px rgba(244, 242, 242, 0.915);
+}
+
+.wrong{
+    width: 30vw;
+    height: 7vh;
+    margin: 15px;
+    border-radius: 100px;
+    background-color:red;
+    color: white;
+    border: none; 
+    font-size: 1.1em;
+    box-shadow: 0 -1.5px 1px 2px rgba(244, 242, 242, 0.915);
+}
+
 
 
 /****************** inizio css timer ****************/

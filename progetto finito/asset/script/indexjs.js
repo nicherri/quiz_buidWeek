@@ -273,15 +273,20 @@ function showdomanda() {
     answers.splice(randomIndex, 1); // Rimuove la risposta inserita per evitare la duplicazione
   }
   const allButtons = document.querySelectorAll(".risposta");
-  allButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const selectedAnswer = this.querySelector("#ansvalue").textContent.trim();
-      if (selectedAnswer === currentdomanda.correct_answer) {
-        score++;
-        localStorage.setItem("score", score); // Salva lo score nello storage locale
-      }
-    });
+allButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const selectedAnswer = this;
+    const answerText = selectedAnswer.textContent.trim();
+    if (answerText === currentdomanda.correct_answer) {
+      selectedAnswer.classList.remove("risposta");
+      selectedAnswer.classList.add("correct");
+      localStorage.setItem("score", ++score); // Incremento dello score e salvataggio
+    } else {
+      selectedAnswer.classList.remove("risposta");
+      selectedAnswer.classList.add("wrong");
+    }
   });
+});
 }
 
 // Funzione per reimpostare lo stato
@@ -300,7 +305,7 @@ function showNextdomanda() {
       // Rimuovi la classe dopo un breve ritardo
       divQuiz.classList.remove("fade");
       showdomanda();
-    }, 300);
+    }, 500);
   } else {
     window.location = "./risultati.html";
   }
