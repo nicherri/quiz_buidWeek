@@ -247,7 +247,527 @@ const domandas = [
     correct_answer: "Java",
     incorrect_answers: ["Python", "C", "Jakarta"],
   },
+  {
+    category: "Computer Science",
+    type: "multiple",
+    difficulty: "easy",
+    domanda: "What is a computer?",
+    correct_answer: " An electronic device",
+    incorrect_answers: [
+        "A vehicle",
+        "An animal",
+        "A tree"
+    ]
+},
+{
+    category: "Computer Science",
+    type: "multiple",
+    difficulty: "easy",
+    domanda: "Which of these is a computer brand?",
+    correct_answer: "Dell",
+    incorrect_answers: [
+        "Ferrari",
+        "Samsung",
+        "Nike"
+    ]
+},
+{
+    category: "Computer Science",
+    type: "multiple",
+    difficulty: "easy",
+    domanda: "Which of these is not an operating system?",
+    correct_answer: "Linux",
+    incorrect_answers: [
+        "Android",
+        "iOS",
+        "Windows"
+    ]
+},
+{
+    category: "Computer Science",
+    type: "multiple",
+    difficulty: "easy",
+    domanda: "Which of these is not a file type?",
+    correct_answer: ".computer",
+    incorrect_answers: [
+        ".doc",
+        ".jpg",
+        ".mp3"
+    ]
+},
+{
+    category: "Computer Science",
+    type: "multiple",
+    difficulty: "easy",
+    domanda: "What does the term 'Network' represent in computing?",
+    correct_answer: "D) A collection of interconnected nodes",
+    incorrect_answers: [
+        "A sweater",
+        "A column",
+        "A fishing spot"
+    ]
+},
+{
+    category: "Computer Science",
+    type: "multiple",
+    difficulty: "easy",
+    domanda: "Which of these is a programming language?",
+    correct_answer: "D) Python",
+    incorrect_answers: [
+        "English",
+        "Italian",
+        "Spanish"
+    ]
+},
+{
+    category: "Computer Science",
+    type: "boolean",
+    difficulty: "easy",
+    domanda: "Programming is a fundamental component of computer science",
+    correct_answer: "true",
+    incorrect_answers: ["false"]
+},
+{
+    category: "Computer Science",
+    type: "boolean",
+    difficulty: "easy",
+    domanda: "The mouse is a common input device associated with a computer",
+    correct_answer: "true",
+    incorrect_answers: ["false"]
+},
+{
+    category: "Computer Science",
+    type: "boolean",
+    difficulty: "easy",
+    domanda: "Computers solve mathematical problems much more efficiently than humans",
+    correct_answer: "true",
+    incorrect_answers: ["false"]
+},
+{
+    category: "Computer Science",
+    type: "boolean",
+    difficulty: "easy",
+    domanda: "HTML is a programming language used to create web pages",
+    correct_answer: "false",
+    incorrect_answers: ["true"]
+},
 ];
+
+const questionsMiddle = [
+  {
+      category: "Web Development",
+      type: "multiple",
+      difficulty: "middle",
+      domanda: "What is the purpose of HTML in web development?",
+      correct_answer: "Structure the content of a website",
+      incorrect_answers: [
+        "Add interactivity and dynamic elements to a website",
+        "Define the style and layout of a website",
+        "Make a website interactive",
+      ],
+    },
+    {
+      category: "Science: Computers",
+      type: "multiple",
+      difficulty: "middle",
+      domanda: "Which of the following is NOT a valid data type in JavaScript?",
+      correct_answer: "Array",
+      incorrect_answers: [
+        "Boolean",
+        "Number",
+        "String",
+      ],
+    },
+    {
+      category: "Web Development",
+      type: "multiple",
+      difficulty: "middle",
+      domanda: "What does the 'function' keyword signify in JavaScript?",
+      correct_answer: "Declaring a reusable block of code",
+      incorrect_answers: [
+        "A built-in method",
+        "A loop statement",
+        "A data type",
+      ],
+    },
+    {
+      category: "Web Development",
+      type: "multiple",
+      difficulty: "middle",
+      domanda: "In HTML, what tag is used to create a hyperlink?",
+      correct_answer: "<a> ",
+      incorrect_answers: [
+        "<src>",
+        "<link>",
+        "<href>",
+      ],
+    },
+    {
+      category: "Web Development",
+      type: "multiple",
+      difficulty: "middle",
+      domanda: "Which CSS property is used to create space between an element's border and its content?",
+      correct_answer: "Padding",
+      incorrect_answers: [
+        "Margin",
+        "Border-spacing",
+        "Space"
+      ],
+    },
+    {
+      category: "Web Development",
+      type: "multiple",
+      difficulty: "middle",
+      domanda: "What symbol is used for single-line comments in JavaScript?",
+      correct_answer: "// ",
+      incorrect_answers: [
+        "--!>",
+        "/*",
+        "<!--",
+      ],
+    },
+    {
+      category: "Web Development",
+      type: "multiple",
+      difficulty: "middle",
+      domanda: "What is the purpose of the <script> tag in HTML?",
+      correct_answer: "Write JavaScript code within an HTML document",
+      incorrect_answers: [
+        "Load external images",
+        "Style the content of a webpage",
+        "Link to an external CSS file",
+      ],
+    },
+    {
+      category: "Web Development",
+      type: "multiple",
+      difficulty: "middle",
+      domanda: "What JavaScript function is used to print content to the console for debugging?",
+      correct_answer: "A) console.log() ",
+      incorrect_answers: [
+        "print()",
+        "log()",
+        "write()",
+      ],
+    },
+    {
+      category: "Web Development",
+      type: "multiple",
+      difficulty: "middle",
+      domanda: "Which HTML tag is used to define the structure of a table?",
+      correct_answer: "<table>",
+      incorrect_answers: [
+        "<tr>",
+        "<row>",
+        "<tab>",
+      ],
+    },
+    {
+      category: "Web Development",
+      type: "boolean",
+      difficulty: "middle",
+      domanda: "HTML is responsible for the structure of a webpage, while CSS is responsible for the presentation of the content on the webpage.",
+      correct_answer: "True ",
+      incorrect_answers: ["False"]
+    },
+    {
+      category: "Web Development",
+      type: "boolean",
+      difficulty: "middle",
+      domanda: "JavaScript is a server-side scripting language that helps with the functionality of a website.",
+      correct_answer: "False",
+      incorrect_answers: ["True "]
+    },
+    {
+      category: "Web Development",
+      type: "boolean",
+      difficulty: "middle",
+      domanda: "In HTML, the '<head>' tag is where you would typically find the content that is directly displayed on the webpage.",
+      correct_answer: "False",
+      incorrect_answers: ["True "]
+    },
+    {
+      category: "Web Development",
+      type: "boolean",
+      difficulty: "middle",
+      domanda: "CSS can be directly embedded within an HTML file using the '<css>' tag.",
+      correct_answer: "False",
+      incorrect_answers: ["True "]
+    },
+    {
+      category: "Web Development",
+      type: "boolean",
+      difficulty: "middle",
+      domanda: "Inline CSS is when you apply CSS styling directly within the HTML element using the 'style' attribute.",
+      correct_answer: "True ",
+      incorrect_answers: ["False"]
+    },
+    {
+      category: "Web Development",
+      type: "boolean",
+      difficulty: "middle",
+      domanda: "HTML is not a programming language but a markup language used to structure content on the web.",
+      correct_answer: "True ",
+      incorrect_answers: ["False"]
+    },
+    {
+      category: "Web Development",
+      type: "boolean",
+      difficulty: "middle",
+      domanda: "JavaScript is mainly used for client-side scripting to make web pages interactive.",
+      correct_answer: "True",
+      incorrect_answers: ["False"]
+    },
+    {
+      category: "Web Development",
+      type: "boolean",
+      difficulty: "middle",
+      domanda: "CSS stands for Central Style Sheets, which is a way to globally style web pages across different websites.",
+      correct_answer: "False",
+      incorrect_answers: ["True "]
+    },
+    {
+      category: "Web Development",
+      type: "boolean",
+      difficulty: "middle",
+      domanda: "JavaScript is mandatory for creating interactive elements on a webpage, such as buttons that trigger specific actions.",
+      correct_answer: "True ",
+      incorrect_answers: ["False"]
+    },
+    {
+      category: "Web Development",
+      type: "boolean",
+      difficulty: "middle",
+      domanda: "The use of external CSS files allows for consistent styling across multiple HTML pages.",
+      correct_answer: "True ",
+      incorrect_answers: ["False"]
+    }
+  ];
+
+
+ const questionsDifficult = [
+    {
+        category: "Web Development",
+        type: "multiple",
+        difficulty: "hard",
+        domanda: "What is the meaning of the acronym HTML?",
+        correct_answer: "Hyper Text Markup Language",
+        incorrect_answers: [
+          "Home Technology Markup Language",
+          "Home Text Markup Language",
+          "Hyperlinks and Text Markup Language",
+        ],
+    },
+    {
+        category: "Web Development",
+        type: "multiple",
+        difficulty: "hard",
+        domanda: "What is the Correct attribute for linking a CSS file to an HTML document?",
+        correct_answer: "href",
+        incorrect_answers: [
+          "stylesheet",
+          "hreflang",
+          "rel",
+        ],
+    },
+    {
+        category: "Web Development",
+        type: "multiple",
+        difficulty: "hard",
+        domanda: "Which of the following is an example of a CSS selector that selects all elements with a 'button' class?",
+        correct_answer: ".button",
+        incorrect_answers: [
+          "button",
+          "button.button",
+          "button",
+        ],
+    },
+    {
+        category: "Web Development",
+        type: "multiple",
+        difficulty: "hard",
+        domanda: "What does 'JS' mean in JavaScript?",
+        correct_answer: "JavaScript",
+        incorrect_answers: [
+          "Java Standalone",
+          "Just Style",
+          "Jump Start",
+        ],
+    },
+    {
+        category: "Web Development",
+        type: "multiple",
+        difficulty: "hard",
+        domanda: "Which of the following represents an example of a correct variable declaration in JavaScript?",
+        correct_answer: "let x = 5;",
+        incorrect_answers: [
+          "const x = 5;",
+          "var x = 5;",
+          "variable x = 5;",
+        ],
+    },
+    {
+        category: "Web Development",
+        type: "multiple",
+        difficulty: "hard",
+        domanda: "What symbol indicates Strict Equality in JavaScript?",
+        correct_answer: "===",
+        incorrect_answers: [
+          "=",
+          "==",
+          "!==",
+        ],
+    },
+    {
+        category: "Web Development",
+        type: "multiple",
+        difficulty: "hard",
+        domanda: "What is the correct output of the following JavaScript code: console.log(1 + '2' + 3)?",
+        correct_answer: "123",
+        incorrect_answers: [
+          "6",
+          "15",
+          "21",
+        ],
+    },
+    {
+        category: "Web Development",
+        type: "multiple",
+        difficulty: "hard",
+        domanda: "What does the .join() method do in JavaScript?",
+        correct_answer: "Concatenates all elements of an array into a string",
+        incorrect_answers: [
+          "Sorts the elements of an array in descending order",
+          "Returns the largest element of an array",
+          "Deletes all duplicate elements from an array",
+        ],
+    },
+    {
+        category: "Web Development",
+        type: "multiple",
+        difficulty: "hard",
+        domanda: "Which of the following is not a primitive data type in JavaScript?",
+        correct_answer: "object",
+        incorrect_answers: [
+          "string",
+          "undefined",
+          "boolean",
+        ],
+    },
+    {
+        category: "Web Development",
+        type: "multiple",
+        difficulty: "hard",
+        domanda: "What is the correct syntax for commenting in HTML?",
+        correct_answer: "// Comment",
+        incorrect_answers: [
+          "/* Comment */",
+          "* Comment *",
+          "<!-- Comment -->",
+        ],
+    },
+      {
+            category: "Web Development",
+            type: "boolean",
+            difficulty: "hard",
+            domanda: "Can JavaScript code be embedded directly within the '<head>' tag of an HTML document?",
+            correct_answer: "true",
+            incorrect_answers: [
+                "false"
+            ]
+        },
+        {
+            category: "Web Development",
+            type: "boolean",
+            difficulty: "hard",
+            domanda: "Does CSS abbreviate 'Cascading Stylesheets'?",
+            correct_answer: "true",
+            incorrect_answers: [
+                "false"
+            ]
+        },
+        {
+            category: "Web Development",
+            type: "boolean",
+            difficulty: "hard",
+            domanda: "Is the main tag for writing JavaScript code directly in an HTML document <javascript>?",
+            correct_answer: "false",
+            incorrect_answers: [
+                "true"
+            ]
+        },
+        {
+            category: "Web Development",
+            type: "boolean",
+            difficulty: "hard",
+            domanda: "With CSS, is it possible to modify the content of an HTML document?",
+            correct_answer: "false",
+            incorrect_answers: [
+                "true"
+            ]
+        },
+        {
+            category: "Web Development",
+            type: "boolean",
+            difficulty: "hard",
+            domanda: "Does the CSS selector 'div p' select all <p> elements that are direct descendants of a <div> element?",
+            correct_answer: "true",
+            incorrect_answers: [
+                "false"
+            ]
+        },
+        {
+            category: "Web Development",
+            type: "boolean",
+            difficulty: "hard",
+            domanda: "Does the 'onMouseOver' event in JavaScript trigger when the mouse exits the element?",
+            correct_answer: "false",
+            incorrect_answers: [
+                "true"
+            ]
+        },
+        {
+            category: "Web Development",
+            type: "boolean",
+            difficulty: "hard",
+            domanda: "To include an external CSS file in an HTML document, the <style> tag is used.",
+            correct_answer: "false",
+            incorrect_answers: [
+                "true"
+            ]
+        },
+        {
+            category: "Web Development",
+            type: "boolean",
+            difficulty: "hard",
+            domanda: "In HTML, is the <canvas> tag used to draw graphics, animations, or games using JavaScript scripts?",
+            correct_answer: "true",
+            incorrect_answers: [
+                "false"
+            ]
+        },
+        {
+            category: "Web Development",
+            type: "boolean",
+            difficulty: "hard",
+            domanda: "Does the CSS selector '* {}' select all elements on the page?",
+            correct_answer: "true",
+            incorrect_answers: [
+                "false"
+            ]
+        },
+        {
+            category: "Web Development",
+            type: "boolean",
+            difficulty: "hard",
+            domanda: "Can a 'for' loop in JavaScript be written as $for(i=0; i<5; i++)${...}$?",
+            correct_answer: "true",
+            incorrect_answers: [
+                "false"
+            ]
+        }
+    ];
+
 
 // ----------------------------Fine domande
 const divQuiz = document.getElementById("quiz");
