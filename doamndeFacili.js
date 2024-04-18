@@ -4,11 +4,11 @@ const questionsEasy = [
     type: "multiple",
     difficulty: "easy",
     question: "What is a computer?",
-    correct_answer: "D) An electronic device",
+    correct_answer: " An electronic device",
     incorrect_answers: [
-        "A) A vehicle",
-        "B) An animal",
-        "C) A tree"
+        "A vehicle",
+        "An animal",
+        "A tree"
     ]
 },
 {
@@ -16,11 +16,11 @@ const questionsEasy = [
     type: "multiple",
     difficulty: "easy",
     question: "Which of these is a computer brand?",
-    correct_answer: "A) Dell",
+    correct_answer: "Dell",
     incorrect_answers: [
-        "B) Ferrari",
-        "C) Samsung",
-        "D) Nike"
+        "Ferrari",
+        "Samsung",
+        "Nike"
     ]
 },
 {
@@ -28,11 +28,11 @@ const questionsEasy = [
     type: "multiple",
     difficulty: "easy",
     question: "Which of these is not an operating system?",
-    correct_answer: "D) Linux",
+    correct_answer: "Linux",
     incorrect_answers: [
-        "A) Android",
-        "B) iOS",
-        "C) Windows"
+        "Android",
+        "iOS",
+        "Windows"
     ]
 },
 {
@@ -40,11 +40,11 @@ const questionsEasy = [
     type: "multiple",
     difficulty: "easy",
     question: "Which of these is not a file type?",
-    correct_answer: "A) .computer",
+    correct_answer: ".computer",
     incorrect_answers: [
-        "B) .doc",
-        "C) .jpg",
-        "D) .mp3"
+        ".doc",
+        ".jpg",
+        ".mp3"
     ]
 },
 {
@@ -54,9 +54,9 @@ const questionsEasy = [
     question: "What does the term 'Network' represent in computing?",
     correct_answer: "D) A collection of interconnected nodes",
     incorrect_answers: [
-        "A) A sweater",
-        "B) A column",
-        "C) A fishing spot"
+        "A sweater",
+        "A column",
+        "A fishing spot"
     ]
 },
 {
@@ -66,9 +66,9 @@ const questionsEasy = [
     question: "Which of these is a programming language?",
     correct_answer: "D) Python",
     incorrect_answers: [
-        "A) English",
-        "B) Italian",
-        "C) Spanish"
+        "English",
+        "Italian",
+        "Spanish"
     ]
 },
 {
