@@ -319,16 +319,34 @@ const risposteCorrette = localStorage.getItem("score") || 0;
 const risposteSbagliate = risposteTotali - risposteCorrette;
 
 // Calcola le percentuali in base al numero totale di domande
-const percentualeCorrette = Math.round((risposteCorrette / risposteTotali) * 100);
+const percentualeCorrette = Math.round(
+  (risposteCorrette / risposteTotali) * 100
+);
 const percentualeSbagliate = 100 - percentualeCorrette;
 
 // Visualizza percentuali nei paragrafi
-document.getElementById("percentualegiusta").innerText = `${percentualeCorrette}%`;
-document.getElementById("percentualesbagliata").innerText = `${percentualeSbagliate}%`;
+if (document.getElementById("percentualegiusta")) {
+  document.getElementById(
+    "percentualegiusta"
+  ).innerText = `${percentualeCorrette}%`;
+}
+if (document.getElementById("percentualesbagliata")) {
+  document.getElementById(
+    "percentualesbagliata"
+  ).innerText = `${percentualeSbagliate}%`;
+}
 
 // Visualizza conteggio delle domande corrette e sbagliate nei paragrafi
-document.getElementById("domandegiuste").innerText = `${risposteCorrette}/${risposteTotali} answers`;
-document.getElementById("domandesbagliate").innerText = `${risposteSbagliate}/${risposteTotali} answers`;
+if (document.getElementById("domandegiuste")) {
+  document.getElementById(
+    "domandegiuste"
+  ).innerText = `${risposteCorrette}/${risposteTotali} answers`;
+}
+if (document.getElementById("domandesbagliate")) {
+  document.getElementById(
+    "domandesbagliate"
+  ).innerText = `${risposteSbagliate}/${risposteTotali} answers`;
+}
 
 // Rimani dentro la canvas del grafico
 const canvas = document.getElementById("risposteChart");
@@ -418,26 +436,24 @@ const risposteChart = new Chart(ctx, {
 //fine doughnut chart (cerchio risultati)
 //---------------------------------------- 4 PAGINA (nicola)--------------------------///
 // Definizione della funzione per la gestione delle stelle
-initStarRating()
+
+initStarRating();
 function initStarRating() {
   // Seleziona tutte le immagini all'interno dell'elemento con id "stelle"
   const stars = document.querySelectorAll("#stelle img");
 
-  // Variabile per memorizzare la valutazione dell'utente
-  let rating = 0;
-
   // Array per memorizzare i commenti in base alla valutazione
   const commentStyles = [
-      "Insufficient!", // 1
-      "Insufficient!", // 2
-      "Insufficient!", // 3
-      "Insufficient!", // 4
-      "Insufficient!", // 5
-      "Sufficient!",   // 6
-      "Discrete!",     // 7
-      "Excellent!",    // 8
-      "Outstanding!",  // 9
-      "Fantastic!"     // 10
+    "Insufficient!", // 1
+    "Insufficient!", // 2
+    "Insufficient!", // 3
+    "Insufficient!", // 4
+    "Insufficient!", // 5
+    "Sufficient!", // 6
+    "Discrete!", // 7
+    "Excellent!", // 8
+    "Outstanding!", // 9
+    "Fantastic!", // 10
   ];
 
   // Crea un nuovo elemento <p> per il testo del commento
@@ -452,45 +468,40 @@ function initStarRating() {
 
   // Itera su ciascuna stella
   stars.forEach((star, index) => {
+    // Aggiungi un listener per l'evento mouseover (passaggio del mouse)
+    star.addEventListener("mouseover", function (event) {
+      // Imposta il testo del commento in base all'indice della stella
+      commentText.textContent = commentStyles[index];
+      // Evidenzia tutte le stelle fino alla stella corrente
+      for (let i = 0; i <= index; i++) {
+        stars[i].classList.add("active");
+      }
+    });
 
-      // Aggiungi un listener per l'evento mouseover (passaggio del mouse)
-      star.addEventListener("mouseover", function(event) {
-          // Imposta il testo del commento in base all'indice della stella
-          commentText.textContent = commentStyles[index];
-          // Evidenzia tutte le stelle fino alla stella corrente
-          for (let i = 0; i <= index; i++) {
-              stars[i].classList.add("active");
-          }
+    // Aggiungi un listener per l'evento mouseout (uscita del mouse)
+    star.addEventListener("mouseout", function (event) {
+      // Rimuovi l'evidenziazione di tutte le stelle
+      stars.forEach((s, i) => {
+        s.classList.remove("active");
+      });
+    });
+
+    // Aggiungi un listener per l'evento click su ciascuna stella
+    star.addEventListener("click", function () {
+      // Assegna la valutazione corrispondente all'indice della stella
+      rating = index + 1;
+
+      // Rimuovi eventuali stili aggiuntivi su altre stelle
+      stars.forEach((s, i) => {
+        if (i <= index) {
+          s.classList.add("clicked"); // Aggiungi classe "clicked"
+        } else {
+          s.classList.remove("clicked"); // Rimuovi classe "clicked"
+        }
       });
 
-      // Aggiungi un listener per l'evento mouseout (uscita del mouse)
-      star.addEventListener("mouseout", function(event) {
-          // Rimuovi l'evidenziazione di tutte le stelle
-          stars.forEach((s, i) => {
-              s.classList.remove("active");
-          });
-      });
-
-      // Aggiungi un listener per l'evento click su ciascuna stella
-      star.addEventListener("click", function() {
-          // Assegna la valutazione corrispondente all'indice della stella
-          rating = index + 1;
-
-          // Rimuovi eventuali stili aggiuntivi su altre stelle
-          stars.forEach((s, i) => {
-              if (i <= index) {
-                  s.classList.add("clicked"); // Aggiungi classe "clicked"
-              } else {
-                  s.classList.remove("clicked"); // Rimuovi classe "clicked"
-              }
-          });
-          
-          // Imposta il testo del commento in base alla valutazione
-          commentText.textContent = commentStyles[index];
-      });
+      // Imposta il testo del commento in base alla valutazione
+      commentText.textContent = commentStyles[index];
+    });
   });
 }
-
-
- 
-
