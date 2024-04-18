@@ -149,18 +149,6 @@ body {
   font-size: 2.5em;
   margin-top: 15%;
 }
-#btnrst {
-    color: rgb(41, 0, 35);
-    background-color: #00FFFF;
-    border: none;
-    box-shadow: 0 0 10px #00FFFF;
-    cursor: pointer; 
-    font-size: 1.5em;
-    border-radius: 15px;
-    height: 4rem;
-    width: 8em;
-    margin-top: 10%;
-}
 
 
 /****************** inizio css timer ****************/
@@ -314,7 +302,7 @@ body {
 }
 
 /* Stile del testo all'interno del tag span */
-.testospan{
+.testo span{
     font-size: 2.3em;
 }
 
