@@ -781,11 +781,6 @@ const numQuest = localStorage.getItem("numQuest");
 
 let domandaNumber = 0;
 let score = 0;
-for(let i = 0; i< domandas.length;i++){
-  if(diff === domandas.difficulty){
-
-  }
-}
 
 // Funzione per mostrare la domanda corrente
 function showdomanda() {
