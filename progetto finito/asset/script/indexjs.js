@@ -305,13 +305,8 @@ function showNextdomanda() {
     window.location = "./risultati.html";
   }
 }
-
-// Aggiungi un gestore di eventi per il contenitore dei pulsanti delle risposte
-window.onload = function () {
-  showdomanda();
-  answerButtons.addEventListener("click", showNextdomanda);
-};
-
+showdomanda()
+if (answerButtons){answerButtons.addEventListener("click", showNextdomanda);}
 //-----------------------------------Inizio terza pagina (Flavio)--------------------------------------
 const risposteTotali = domandas.length;
 const risposteCorrette = localStorage.getItem("score") || 0;
@@ -509,3 +504,7 @@ function initStarRating() {
     });
   });
 }
+// Aggiungi un gestore di eventi per il contenitore dei pulsanti delle risposte
+window.onload = function () {
+  answerButtons.addEventListener("click", showNextdomanda);
+};
