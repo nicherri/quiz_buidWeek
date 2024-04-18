@@ -252,8 +252,8 @@ function showdomanda() {
   let currentdomanda = domandas[domandaNumber];
   let domandaNo = domandaNumber + 1;
   if (domandaElement){domandaElement.innerHTML = currentdomanda.domanda;}
-  if (question_n){question_n.innerHTML = domandaNo;}//numero della domanda
-  if (totdomande){totdomande.innerHTML = "  " + "/ " + domandas.length;}// num tot domande
+  if (question_n){question_n.innerHTML = domandaNo;} //numero della domanda
+  if (totdomande){totdomande.innerHTML = "  " + "/ " + domandas.length;} // num tot domande
   let answers = [
     currentdomanda.correct_answer,
     ...currentdomanda.incorrect_answers,

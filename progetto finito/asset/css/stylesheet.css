@@ -301,10 +301,6 @@ body {
     font-size: 2.1em;
 }
 
-/* Stile del testo all'interno del tag span */
-.testo span{
-    font-size: 2.3em;
-}
 
 /* Stile delle stelle per la valutazione */
 #stelle{
