@@ -3,13 +3,21 @@
 var btnProceed = document.getElementById("btn")
 
 if(btnProceed){btnProceed.addEventListener("click", function(){
+  let isValid = false;
+  while(!isValid){
   let diff = prompt("Type Difficult: (easy, middle, hard)");
+  if(diff==="easy" || diff==="middle" || diff==="hard"){
   localStorage.setItem("diff", diff);
+  isValid = true;
   let numQuest = prompt("How many questions do you want?");
   localStorage.setItem("numQuest", numQuest);
-  confirm('Confirm or deny');  
+  }
+  else{
+    window.alert("Invalid!")
+  }}  
   })
 }
+
 
 ///-------------------------------------------------------- Seconda pagina
 
@@ -913,18 +921,9 @@ allButtons.forEach((button) => {
   });
 });
 }
+
 console.log(diff)
-if (localStorage.getItem("diff")==='easy'){
-  showdomandaeasy();
-}
 
-else if (localStorage.getItem("diff")==='middle'){
-  showdomandamiddle();
-}
-
-else if (localStorage.getItem("diff")==='hard'){
-  showdomandahard();
-}
 
 // Funzione per reimpostare lo stato
 function resetState() {
@@ -940,13 +939,32 @@ function showNextdomanda() {
     divQuiz.classList.add("fade"); // Aggiungi la classe per la dissolvenza
     setTimeout(() => {
       // Rimuovi la classe dopo un breve ritardo
-      divQuiz.classList.remove("fade");
- //     showdomanda();
+      divQuiz.classList.remove("fade");  
+     if (diff=="easy"){
+        showdomandaeasy();
+      }
+      else if (diff=="middle"){
+        showdomandamiddle();
+      }
+      else{
+        showdomandahard();
+      }
     }, 500);
   } else {
     window.location = "./risultati.html";
   }
 }
+
+if (diff=="easy"){
+  showdomandaeasy();
+}
+else if (diff=="middle"){
+  showdomandamiddle();
+}
+else{
+  showdomandahard();
+}
+
 
 if (answerButtons){answerButtons.addEventListener("click", showNextdomanda);}
 //-----------------------------------Inizio terza pagina (Flavio)--------------------------------------
