@@ -317,22 +317,27 @@ body {
     border: none;
     border-bottom: solid 2px #C40090;
     height: 6vh;
-    font-size: 4vh;
+    font-size: 3vh;
     color: white;
     padding-left: 15px;
+}
+
+
+#scrittura input:focus{
+    outline: none;
 }
 
 /* Stile del pulsante "More Info" */
 .styleButton4Pagina{
     background-color: #00FFFF;
     border: none;
-    margin-top: 1.4em;
-    width: 10em;
-    height: 3em;
-    font-weight: 700;
+    width: 8em;
+    height: 2.5em;
+    font-weight: 750;
     box-shadow: 0 0 15px #00FFFF; 
     cursor: pointer;
-    margin-top: 1.4em;
+    margin-top: 2em;
+    font-size: 1.8em;
 }
 
 /* Stile delle immagini delle stelle */
