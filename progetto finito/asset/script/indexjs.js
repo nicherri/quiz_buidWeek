@@ -1,22 +1,31 @@
 // -------------------------------------------------------- Prima pagina
 
-var btnProceed = document.getElementById("btn")
+var btnProceed = document.getElementById("btn");
+if (btnProceed) {
+    btnProceed.addEventListener("click", function () {
+      let isValid = false;
+      while (!isValid) {
+        let diff = prompt("Type Difficulty: (easy, middle, hard)");
+        if (diff === "easy" || diff === "middle" || diff === "hard") {
+          localStorage.setItem("diff", diff);
+          isValid = true;
+        } else {
+          window.alert("Invalid!");
+        }
+      }
 
-if(btnProceed){btnProceed.addEventListener("click", function(){
-  let isValid = false;
-  while(!isValid){
-  let diff = prompt("Type Difficult: (easy, middle, hard)");
-  if(diff==="easy" || diff==="middle" || diff==="hard"){
-  localStorage.setItem("diff", diff);
-  isValid = true;
-  let numQuest = prompt("How many questions do you want?");
-  localStorage.setItem("numQuest", numQuest);
+      isValid = false; // Resetta isValid per il nuovo controllo
+      while (!isValid) {
+        let numQuest = prompt("How many questions do you want?");
+        if (!isNaN(numQuest) && parseInt(numQuest) > 0 && parseInt(numQuest)<=20 ) {
+          localStorage.setItem("numQuest", numQuest);
+          isValid = true;
+        } else {
+          window.alert("Invalid! Please enter a number between 1 - 20.");
+        }
+      }
+    });
   }
-  else{
-    window.alert("Invalid!")
-  }}  
-  })
-}
 
 
 ///-------------------------------------------------------- Seconda pagina
@@ -320,7 +329,7 @@ const domandas = [
     type: "multiple",
     difficulty: "easy",
     domanda: "Which of these is a programming language?",
-    correct_answer: "D) Python",
+    correct_answer: "Python",
     incorrect_answers: [
         "English",
         "Italian",
@@ -403,11 +412,11 @@ const questionsMiddle = [
       type: "multiple",
       difficulty: "middle",
       domanda: "In HTML, what tag is used to create a hyperlink?",
-      correct_answer: "<a> ",
+      correct_answer: "&lt;a&gt;" ,
       incorrect_answers: [
-        "<src>",
-        "<link>",
-        "<href>",
+        "&lt;src&gt;",
+        "&lt;link&gt;",
+        "&lt;href&gt;",
       ],
     },
     {
@@ -427,11 +436,11 @@ const questionsMiddle = [
       type: "multiple",
       difficulty: "middle",
       domanda: "What symbol is used for single-line comments in JavaScript?",
-      correct_answer: "// ",
+      correct_answer: "//",
       incorrect_answers: [
-        "--!>",
+        "--!&gt;",
         "/*",
-        "<!--",
+        "&lt;!--",
       ],
     },
     {
@@ -451,7 +460,7 @@ const questionsMiddle = [
       type: "multiple",
       difficulty: "middle",
       domanda: "What JavaScript function is used to print content to the console for debugging?",
-      correct_answer: "A) console.log() ",
+      correct_answer: "console.log()",
       incorrect_answers: [
         "print()",
         "log()",
@@ -463,11 +472,11 @@ const questionsMiddle = [
       type: "multiple",
       difficulty: "middle",
       domanda: "Which HTML tag is used to define the structure of a table?",
-      correct_answer: "<table>",
+      correct_answer: "&lt;table&gt;",
       incorrect_answers: [
-        "<tr>",
-        "<row>",
-        "<tab>",
+        "&lt;tr&gt;",
+        "&lt;row&gt;",
+        "&lt;tab&gt;",
       ],
     },
     {
