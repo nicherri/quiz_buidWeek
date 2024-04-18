@@ -312,12 +312,12 @@ body {
 
 /* Stile dell'input del modulo */
 #scrittura input{
-    width: 100%;
+    width: 85%;
     background: transparent;
     border: none;
     border-bottom: solid 2px #C40090;
-    height: 6vh;
-    font-size: 3vh;
+    height: 5vh;
+    font-size: 2vh;
     color: white;
     padding-left: 15px;
 }
@@ -331,13 +331,13 @@ body {
 .styleButton4Pagina{
     background-color: #00FFFF;
     border: none;
-    width: 8em;
-    height: 2.5em;
-    font-weight: 750;
+    width: 9em;
+    height: 2.7em;
+    font-weight: 799;
     box-shadow: 0 0 15px #00FFFF; 
     cursor: pointer;
     margin-top: 2em;
-    font-size: 1.8em;
+    font-size: 1.5em;
 }
 
 /* Stile delle immagini delle stelle */
