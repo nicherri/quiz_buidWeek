@@ -785,7 +785,7 @@ const failedText = // Testo per aver fallito
 
 // Rimani dentro il grafico
 
-const risposteChart = new Chart(ctx, {
+ new Chart(ctx, {
   type: "doughnut",
   data: {
     datasets: [
