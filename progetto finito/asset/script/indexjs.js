@@ -462,7 +462,7 @@ function initStarRating() {
   commentText.classList.add("comment-text");
 
   // Aggiungi il paragrafo al contenitore delle stelle
-  const starsContainer = document.getElementById("stelle");
+  const starsContainer = document.getElementById("sottocomment");
   starsContainer.appendChild(commentText);
 
   // Itera su ciascuna stella
