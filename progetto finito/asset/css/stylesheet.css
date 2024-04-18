@@ -336,6 +336,7 @@ body {
     font-weight: 700;
     box-shadow: 0 0 15px #00FFFF; 
     cursor: pointer;
+    margin-top: 1.4em;
 }
 
 /* Stile delle immagini delle stelle */
