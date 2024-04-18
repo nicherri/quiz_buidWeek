@@ -2,8 +2,8 @@ const questionsDifficult = [
     {
         category: "Web Development",
         type: "multiple",
-        difficulty: "difficult",
-        question: "Qual è il significato dell'acronimo HTML?",
+        difficulty: "hard",
+        question: "What is the meaning of the acronym HTML?",
         correct_answer: "Hyper Text Markup Language",
         incorrect_answers: [
           "Home Technology Markup Language",
@@ -14,8 +14,8 @@ const questionsDifficult = [
     {
         category: "Web Development",
         type: "multiple",
-        difficulty: "difficult",
-        question: "Qual è l'attributo corretto per collegare un file CSS a un documento HTML?",
+        difficulty: "hard",
+        question: "What is the Correct attribute for linking a CSS file to an HTML document?",
         correct_answer: "href",
         incorrect_answers: [
           "stylesheet",
@@ -26,8 +26,8 @@ const questionsDifficult = [
     {
         category: "Web Development",
         type: "multiple",
-        difficulty: "difficult",
-        question: "Quale dei seguenti è un esempio di un selettore CSS che seleziona tutti gli elementi con una classe 'button'?",
+        difficulty: "hard",
+        question: "Which of the following is an example of a CSS selector that selects all elements with a 'button' class?",
         correct_answer: ".button",
         incorrect_answers: [
           "button",
@@ -38,8 +38,8 @@ const questionsDifficult = [
     {
         category: "Web Development",
         type: "multiple",
-        difficulty: "difficult",
-        question: "Cosa significa 'JS' in JavaScript?",
+        difficulty: "hard",
+        question: "What does 'JS' mean in JavaScript?",
         correct_answer: "JavaScript",
         incorrect_answers: [
           "Java Standalone",
@@ -50,8 +50,8 @@ const questionsDifficult = [
     {
         category: "Web Development",
         type: "multiple",
-        difficulty: "difficult",
-        question: "Quale tra le seguenti opzioni rappresenta un esempio di dichiarazione di variabile corretta in JavaScript?",
+        difficulty: "hard",
+        question: "Which of the following represents an example of a correct variable declaration in JavaScript?",
         correct_answer: "let x = 5;",
         incorrect_answers: [
           "const x = 5;",
@@ -62,8 +62,8 @@ const questionsDifficult = [
     {
         category: "Web Development",
         type: "multiple",
-        difficulty: "difficult",
-        question: "Qual è il simbolo per indicare l'ugualianza Stricatamente Uguale in JavaScript?",
+        difficulty: "hard",
+        question: "What symbol indicates Strict Equality in JavaScript?",
         correct_answer: "===",
         incorrect_answers: [
           "=",
@@ -74,8 +74,8 @@ const questionsDifficult = [
     {
         category: "Web Development",
         type: "multiple",
-        difficulty: "difficult",
-        question: "Qual'è l'output corretto del seguente codice JavaScript: console.log(1 + '2' + 3)?",
+        difficulty: "hard",
+        question: "What is the correct output of the following JavaScript code: console.log(1 + '2' + 3)?",
         correct_answer: "123",
         incorrect_answers: [
           "6",
@@ -86,20 +86,20 @@ const questionsDifficult = [
     {
         category: "Web Development",
         type: "multiple",
-        difficulty: "difficult",
-        question: "Cosa fa il metodo .join() in JavaScript?",
-        correct_answer: "Concatena tutti gli elementi di un array in una stringa",
+        difficulty: "hard",
+        question: "What does the .join() method do in JavaScript?",
+        correct_answer: "Concatenates all elements of an array into a string",
         incorrect_answers: [
-          "Ordina gli elementi di un array in ordine decrescente",
-          "Restituisce l'elemento più grande di un array",
-          "Elimina tutti gli elementi duplicati da un array",
+          "Sorts the elements of an array in descending order",
+          "Returns the largest element of an array",
+          "Deletes all duplicate elements from an array",
         ],
     },
     {
         category: "Web Development",
         type: "multiple",
-        difficulty: "difficult",
-        question: "Quale dei seguenti non è un tipo di dato primitivo in JavaScript?",
+        difficulty: "hard",
+        question: "Which of the following is not a primitive data type in JavaScript?",
         correct_answer: "object",
         incorrect_answers: [
           "string",
@@ -110,20 +110,20 @@ const questionsDifficult = [
     {
         category: "Web Development",
         type: "multiple",
-        difficulty: "difficult",
-        question: "Qual è la sintassi corretta per commentare in HTML?",
-        correct_answer: "// Commento",
+        difficulty: "hard",
+        question: "What is the correct syntax for commenting in HTML?",
+        correct_answer: "// Comment",
         incorrect_answers: [
-          "/* Commento */",
-          "* Commento *",
-          "<!-- Commento -->",
+          "/* Comment */",
+          "* Comment *",
+          "<!-- Comment -->",
         ],
     },
       {
             category: "Web Development",
             type: "boolean",
-            difficulty: "difficult",
-            question: "Il codice JavaScript può essere incorporato direttamente nel tag '<head>' di un documento HTML.",
+            difficulty: "hard",
+            question: "Can JavaScript code be embedded directly within the '<head>' tag of an HTML document?",
             correct_answer: "true",
             incorrect_answers: [
                 "false"
@@ -132,8 +132,8 @@ const questionsDifficult = [
         {
             category: "Web Development",
             type: "boolean",
-            difficulty: "difficult",
-            question: "CSS abbrevia 'Cascading Stylesheets'.",
+            difficulty: "hard",
+            question: "Does CSS abbreviate 'Cascading Stylesheets'?",
             correct_answer: "true",
             incorrect_answers: [
                 "false"
@@ -142,8 +142,8 @@ const questionsDifficult = [
         {
             category: "Web Development",
             type: "boolean",
-            difficulty: "difficult",
-            question: "Il tag principale per scrivere un codice JavaScript direttamente in un documento HTML è <javascript>.",
+            difficulty: "hard",
+            question: "Is the main tag for writing JavaScript code directly in an HTML document <javascript>?",
             correct_answer: "false",
             incorrect_answers: [
                 "true"
@@ -152,8 +152,8 @@ const questionsDifficult = [
         {
             category: "Web Development",
             type: "boolean",
-            difficulty: "difficult",
-            question: "Con CSS è possibile modificare il contenuto di un documento HTML.",
+            difficulty: "hard",
+            question: "With CSS, is it possible to modify the content of an HTML document?",
             correct_answer: "false",
             incorrect_answers: [
                 "true"
@@ -162,8 +162,8 @@ const questionsDifficult = [
         {
             category: "Web Development",
             type: "boolean",
-            difficulty: "difficult",
-            question: "Il selettore CSS 'div p' seleziona tutti gli elementi <p> che sono discendenti diretti di un elemento <div>.",
+            difficulty: "hard",
+            question: "Does the CSS selector 'div p' select all <p> elements that are direct descendants of a <div> element?",
             correct_answer: "true",
             incorrect_answers: [
                 "false"
@@ -172,8 +172,8 @@ const questionsDifficult = [
         {
             category: "Web Development",
             type: "boolean",
-            difficulty: "difficult",
-            question: "L'evento 'onMouseOver' in JavaScript si attiva quando il mouse esce dall'elemento.",
+            difficulty: "hard",
+            question: "Does the 'onMouseOver' event in JavaScript trigger when the mouse exits the element?",
             correct_answer: "false",
             incorrect_answers: [
                 "true"
@@ -182,8 +182,8 @@ const questionsDifficult = [
         {
             category: "Web Development",
             type: "boolean",
-            difficulty: "difficult",
-            question: "Per includere un file CSS esterno in un documento HTML, si utilizza il tag <style>.",
+            difficulty: "hard",
+            question: "To include an external CSS file in an HTML document, the <style> tag is used.",
             correct_answer: "false",
             incorrect_answers: [
                 "true"
@@ -192,8 +192,8 @@ const questionsDifficult = [
         {
             category: "Web Development",
             type: "boolean",
-            difficulty: "difficult",
-            question: "Nel linguaggio HTML, il tag <canvas> è utilizzato per disegnare grafici, animazioni o giochi utilizzando script JavaScript.",
+            difficulty: "hard",
+            question: "In HTML, is the <canvas> tag used to draw graphics, animations, or games using JavaScript scripts?",
             correct_answer: "true",
             incorrect_answers: [
                 "false"
@@ -202,8 +202,8 @@ const questionsDifficult = [
         {
             category: "Web Development",
             type: "boolean",
-            difficulty: "difficult",
-            question: "Il selettore CSS '* {}' seleziona tutti gli elementi della pagina.",
+            difficulty: "hard",
+            question: "Does the CSS selector '* {}' select all elements on the page?",
             correct_answer: "true",
             incorrect_answers: [
                 "false"
@@ -212,12 +212,11 @@ const questionsDifficult = [
         {
             category: "Web Development",
             type: "boolean",
-            difficulty: "difficult",
-            question: "Un loop 'for' in JavaScript può essere scritto come $for(i=0; i<5; i++)${...}$.",
+            difficulty: "hard",
+            question: "Can a 'for' loop in JavaScript be written as $for(i=0; i<5; i++)${...}$?",
             correct_answer: "true",
             incorrect_answers: [
                 "false"
             ]
         }
     ];
-    
