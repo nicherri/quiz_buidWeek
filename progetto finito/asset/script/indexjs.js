@@ -237,7 +237,6 @@ const domandas = [
 ];
 
 // ----------------------------Fine domande
-
 const divQuiz = document.getElementById("quiz");
 const domandaElement = document.getElementById("domanda");
 const answerButtons = document.getElementById("button_risposte");
@@ -252,9 +251,9 @@ function showdomanda() {
   restartTimer();
   let currentdomanda = domandas[domandaNumber];
   let domandaNo = domandaNumber + 1;
-  domandaElement.innerHTML = currentdomanda.domanda;
-  question_n.innerHTML = domandaNo; //numero della domanda
-  totdomande.innerHTML = "  " + "/ " + domandas.length; // num tot domande
+  if (domandaElement){domandaElement.innerHTML = currentdomanda.domanda;}
+  if (question_n){question_n.innerHTML = domandaNo;}//numero della domanda
+  if (totdomande){totdomande.innerHTML = "  " + "/ " + domandas.length;}// num tot domande
   let answers = [
     currentdomanda.correct_answer,
     ...currentdomanda.incorrect_answers,
@@ -441,6 +440,7 @@ initStarRating();
 function initStarRating() {
   // Seleziona tutte le immagini all'interno dell'elemento con id "stelle"
   const stars = document.querySelectorAll("#stelle img");
+
 
   // Array per memorizzare i commenti in base alla valutazione
   const commentStyles = [
