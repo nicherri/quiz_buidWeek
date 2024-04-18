@@ -348,7 +348,9 @@ if (document.getElementById("domandesbagliate")) {
 }
 
 // Rimani dentro la canvas del grafico
+
 const canvas = document.getElementById("risposteChart");
+if (canvas){
 const ctx = canvas.getContext("2d");
 canvas.style.width = "400px"; // Larghezza doughnut
 canvas.style.height = "400px"; // Altezza doughnut
@@ -359,6 +361,7 @@ const failedText = // Testo per aver fallito
   "Oh no! You failed the exam. We'll send you the details in few minutes. Check your email (including promotions / spam folder)";
 
 // Rimani dentro il grafico
+
 const risposteChart = new Chart(ctx, {
   type: "doughnut",
   data: {
@@ -432,6 +435,7 @@ const risposteChart = new Chart(ctx, {
     },
   },
 });
+}
 //fine doughnut chart (cerchio risultati)
 //---------------------------------------- 4 PAGINA (nicola)--------------------------///
 // Definizione della funzione per la gestione delle stelle
