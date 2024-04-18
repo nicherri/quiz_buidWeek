@@ -505,6 +505,3 @@ function initStarRating() {
   });
 }
 // Aggiungi un gestore di eventi per il contenitore dei pulsanti delle risposte
-window.onload = function () {
-  answerButtons.addEventListener("click", showNextdomanda);
-};
