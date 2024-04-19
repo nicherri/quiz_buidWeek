@@ -1,13 +1,13 @@
 // -------------------------------------------------------- Prima pagina
 
-var btnProceed = document.getElementById("btn");
+var btnProceed = document.getElementById("btn");                           // Selezione difficoltà domande
 if (btnProceed) {
     btnProceed.addEventListener("click", function () {
       let isValid = false;
       while (!isValid) {
-        let diff = prompt("Type Difficulty: (easy, middle, hard)");
+        let diff = prompt("Type Difficulty: (easy, middle, hard)");       // Utilizzo di prompt per mostrare come Pop-Up il messaggio sulla difficoltà
         if (diff === "easy" || diff === "middle" || diff === "hard") {
-          localStorage.setItem("diff", diff);
+          localStorage.setItem("diff", diff);                             // Utilizzo di localStorage per salvare la variabile e riusarla in un secondo momento 
           isValid = true;
         } else {
           window.alert("Invalid!");
@@ -16,12 +16,12 @@ if (btnProceed) {
 
       isValid = false; // Resetta isValid per il nuovo controllo
       while (!isValid) {
-        let numQuest = prompt("How many questions do you want?");
-        if (!isNaN(numQuest) && parseInt(numQuest) > 0 && parseInt(numQuest)<=20 ) {
+        let numQuest = prompt("How many questions do you want?");                         // Prompt per mostrare a video quante domande si vogliono selezionare
+        if (!isNaN(numQuest) && parseInt(numQuest) >= 5 && parseInt(numQuest)<=20 ) {
           localStorage.setItem("numQuest", numQuest);
           isValid = true;
         } else {
-          window.alert("Invalid! Please enter a number between 1 - 20.");
+          window.alert("Invalid! Please enter a number between 5 - 20.");                 // Range domande (5 - 20)
         }
       }
     });
@@ -30,11 +30,11 @@ if (btnProceed) {
 
 ///-------------------------------------------------------- Seconda pagina
 
-const FULL_DASH_ARRAY = 283;
-const WARNING_THRESHOLD = 10;
-const ALERT_THRESHOLD = 5;
+const FULL_DASH_ARRAY = 283;          // Lunghezza del percorso del cerchio completo (283 si riferisce alla lunghezza del percorso in pixel )
+const WARNING_THRESHOLD = 10;         // Costante, utilizzata dopo per cambiare colore a 10 secondi
+const ALERT_THRESHOLD = 5;            // Costante, utilizzata dopo per cambiare colore a 5 secondi
 
-const COLOR_CODES = {
+const COLOR_CODES = {                 // classi colorazione barra timer
   info: {
     color: "green",
   },
@@ -53,6 +53,8 @@ let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
+
+//Attributi del timer (posizione, scorrimento della barra ecc..)
 
 document.getElementById("timer").innerHTML = `
  <div class="base-timer">
@@ -78,13 +80,13 @@ document.getElementById("timer").innerHTML = `
  </div>
  `;
 
-startTimer();
+startTimer();                                   // Chiamata funzione startTimer()
 
 function onTimesUp() {
   clearInterval(timerInterval);
 }
 
-function startTimer() {
+function startTimer() {                        // Definizione funzione startTimer()
   timerInterval = setInterval(() => {
     timePassed = timePassed += 1;
     timeLeft = TIME_LIMIT - timePassed;
@@ -93,14 +95,14 @@ function startTimer() {
     setCircleDasharray();
     setRemainingPathColor(timeLeft);
 
-    if (timeLeft === 0) {
+    if (timeLeft === 0) {                     // Quando il tempo scade, il timer viene resettato e mostra la domanda successiva
       onTimesUp();
       showNextdomanda();
     }
   }, 1000);
 }
 
-function formatTime(time) {
+function formatTime(time) {                   // Funzione per mostrare il timer in secondi
   const minutes = Math.floor(time / 60);
   let seconds = time % 60;
 
@@ -111,7 +113,7 @@ function formatTime(time) {
   return `${minutes}:${seconds}`;
 }
 
-function setRemainingPathColor(timeLeft) {
+function setRemainingPathColor(timeLeft) {             // Funzione che cambia il colore ogni qual volta il timer raggiunge i 10 e 5 secondi
   const { alert, warning, info } = COLOR_CODES;
   if (timeLeft <= alert.threshold) {
     document
@@ -151,7 +153,7 @@ function calculateTimeFraction() {
   return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
 }
 
-function setCircleDasharray() {
+function setCircleDasharray() {                       // Funzione che permette di colorare il percorso del timer
   const circleDasharray = `${(
     calculateTimeFraction() * FULL_DASH_ARRAY
   ).toFixed(0)} 283`;
@@ -160,7 +162,7 @@ function setCircleDasharray() {
     .setAttribute("stroke-dasharray", circleDasharray);
 }
 
-function restartTimer() {
+function restartTimer() {                             // Funzione per far ripartire il Timer 
   timePassed = 0;
   timeLeft = TIME_LIMIT;
   document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft);
@@ -170,7 +172,7 @@ function restartTimer() {
 
 /***************************** inizio js quiz II  pagina ******************************/
 
-const domandas = [
+const domandas = [                                  // Array domande facili
   {
     category: "Science: Computers",
     type: "multiple",
@@ -370,7 +372,7 @@ const domandas = [
 },
 ];
 
-const questionsMiddle = [
+const questionsMiddle = [                                           // Array domande difficoltà media
   {
       category: "Web Development",
       type: "multiple",
@@ -562,7 +564,7 @@ const questionsMiddle = [
   ];
 
 
- const questionsDifficult = [
+ const questionsDifficult = [                                 // Array domande difficili
     {
         category: "Web Development",
         type: "multiple",
@@ -787,56 +789,65 @@ const questionsMiddle = [
 
 
 // ----------------------------Fine domande
-const divQuiz = document.getElementById("quiz");
+const divQuiz = document.getElementById("quiz");                     
 const domandaElement = document.getElementById("domanda");
 const answerButtons = document.getElementById("button_risposte");
 const question_n = document.getElementById("ndomanda");
 const totdomande = document.getElementById("totdomande");
-const diff = localStorage.getItem("diff");
-const numQuest = localStorage.getItem("numQuest");
+const diff = localStorage.getItem("diff");                    // Riporto il valore diff preso dal Pop-up
+const numQuest = localStorage.getItem("numQuest");            // Riporto il valore numQuest preso dal Pop-up
 
 
-let domandaNumber = 0;
-let score = 0;
+let domandaNumber = 0;                                        // Variabile inizializzata a 0 che verrà utilizzata per mostrare a video il valore della domanda corrente
+let score = 0;                                                // Variabile inizializzata a 0 che verrà incrementata ogni qual volta verrà selezionata la risposta giusta
 
 
 // Funzione per mostrare la domanda corrente
-function showdomandaeasy() {
-  restartTimer();
+function showdomandaeasy() {                                  // Funzione per mostrare le domande prese dall'array di domande facili
+  restartTimer();                                             // Richiamo la funzio restartTimer per far ripartire il timer ogni volta che si passà alla domanda successiva
 
-  let currentdomanda = domandas[domandaNumber];
-  let domandaNo = domandaNumber + 1;
-  if (domandaElement){domandaElement.innerHTML = currentdomanda.domanda;}
-  if (question_n){question_n.innerHTML = domandaNo;} //numero della domanda
-  if (totdomande){totdomande.innerHTML = "  " + "/ " + numQuest;} // num tot domande
 
-  let answers = [
-    currentdomanda.correct_answer,
-    ...currentdomanda.incorrect_answers,
+
+  // Utilizzeremo gli if come condizione una sola variabile e restituisce true o false se trova o meno l'elemento (Utilizzato per evitare conflitti)
+  // Restituisce sempre true ed esegue l'istruzione, nelle pagine dove non è presente quell'elemento restituisce false e non esegue l'istruzione
+
+  let currentdomanda = domandas[domandaNumber];                                             // domanda corrente
+  let domandaNo = domandaNumber + 1;                                                        // domanda corrente mostrata a video
+  if (domandaElement){domandaElement.innerHTML = currentdomanda.domanda;}                   // Posiziono il numeretto della domanda corrente nell'HTML per mostrarla a video
+  if (question_n){question_n.innerHTML = domandaNo;}                                        //numero della domanda
+  if (totdomande){totdomande.innerHTML = "  " + "/ " + numQuest;}                           // num tot domande
+
+
+  let answers = [                                                                           
+    currentdomanda.correct_answer,                                                          // Array contente tutte le risposte (corrette e sbagliate) di ogni singolo oggetto
+    ...currentdomanda.incorrect_answers,                                          
   ];
- if (answerButtons) {answerButtons.innerHTML = "";}
+ if (answerButtons) {answerButtons.innerHTML = "";}                                         // Mettiamo "" per resettare ogni volta i bottoni e non mostrare i bottoni precedenti
+
+
+ // Template literals per creare i bottoni tanto quanto sono le risposte per ogni singolo oggetto 
 
   while (answers.length > 0) {
-    let randomIndex = Math.floor(Math.random() * answers.length);
+    let randomIndex = Math.floor(Math.random() * answers.length);                                                              
     let newAnswer = `
-          <button class="risposta">
+          <button class="risposta">                                                         
               <span id="ansvalue">
                   ${answers[randomIndex]}
               </span>
           </button>
       `;
     if (answerButtons){answerButtons.innerHTML += newAnswer;}
-    answers.splice(randomIndex, 1); // Rimuove la risposta inserita per evitare la duplicazione
+    answers.splice(randomIndex, 1);                                                         // Rimuove la risposta inserita per evitare la duplicazione
   }
   const allButtons = document.querySelectorAll(".risposta");
 allButtons.forEach((button) => {
-  button.addEventListener("click", function () {
+  button.addEventListener("click", function () {                                            // Funzione al click di ogni risposta
     const selectedAnswer = this;
     const answerText = selectedAnswer.textContent.trim();
     if (answerText === currentdomanda.correct_answer) {
       selectedAnswer.classList.remove("risposta");
       selectedAnswer.classList.add("correct");
-      localStorage.setItem("score", ++score); // Incremento dello score e salvataggio
+      localStorage.setItem("score", ++score);                                               // Incremento dello score e salvataggio
     } else {
       selectedAnswer.classList.remove("risposta");
       selectedAnswer.classList.add("wrong");
@@ -845,13 +856,13 @@ allButtons.forEach((button) => {
 });
 }
 
-function showdomandamiddle() {
-  restartTimer();
+function showdomandamiddle() {                                                          // Funzione identica a quella precedente per le domande con difficoltà middle
+  restartTimer(); 
   let currentdomanda = questionsMiddle[domandaNumber];
   let domandaNo = domandaNumber + 1;
   if (domandaElement){domandaElement.innerHTML = currentdomanda.domanda;}
-  if (question_n){question_n.innerHTML = domandaNo;} //numero della domanda
-  if (totdomande){totdomande.innerHTML = "  " + "/ " + numQuest;} // num tot domande
+  if (question_n){question_n.innerHTML = domandaNo;}                                    //numero della domanda
+  if (totdomande){totdomande.innerHTML = "  " + "/ " + numQuest;}                       // num tot domande
 
   let answers = [
     currentdomanda.correct_answer,
@@ -869,7 +880,7 @@ function showdomandamiddle() {
           </button>
       `;
     if (answerButtons){answerButtons.innerHTML += newAnswer;}
-    answers.splice(randomIndex, 1); // Rimuove la risposta inserita per evitare la duplicazione
+    answers.splice(randomIndex, 1);                                                     // Rimuove la risposta inserita per evitare la duplicazione
   }
   const allButtons = document.querySelectorAll(".risposta");
 allButtons.forEach((button) => {
@@ -879,7 +890,7 @@ allButtons.forEach((button) => {
     if (answerText === currentdomanda.correct_answer) {
       selectedAnswer.classList.remove("risposta");
       selectedAnswer.classList.add("correct");
-      localStorage.setItem("score", ++score); // Incremento dello score e salvataggio
+      localStorage.setItem("score", ++score);                                           // Incremento dello score e salvataggio
     } else {
       selectedAnswer.classList.remove("risposta");
       selectedAnswer.classList.add("wrong");
@@ -888,13 +899,13 @@ allButtons.forEach((button) => {
 });
 }
 
-function showdomandahard() {
+function showdomandahard() {                                                            // Funzione identica a quella precedente per le domande con difficoltà difficult
   restartTimer();
   let currentdomanda = questionsDifficult[domandaNumber];
   let domandaNo = domandaNumber + 1;
   if (domandaElement){domandaElement.innerHTML = currentdomanda.domanda;}
-  if (question_n){question_n.innerHTML = domandaNo;} //numero della domanda
-  if (totdomande){totdomande.innerHTML = "  " + "/ " + numQuest;} // num tot domande
+  if (question_n){question_n.innerHTML = domandaNo;}                                    //numero della domanda
+  if (totdomande){totdomande.innerHTML = "  " + "/ " + numQuest;}                       // num tot domande
 
   let answers = [
     currentdomanda.correct_answer,
@@ -912,7 +923,7 @@ function showdomandahard() {
           </button>
       `;
     if (answerButtons){answerButtons.innerHTML += newAnswer;}
-    answers.splice(randomIndex, 1); // Rimuove la risposta inserita per evitare la duplicazione
+    answers.splice(randomIndex, 1);                                                      // Rimuove la risposta inserita per evitare la duplicazione
   }
   const allButtons = document.querySelectorAll(".risposta");
 allButtons.forEach((button) => {
@@ -922,7 +933,7 @@ allButtons.forEach((button) => {
     if (answerText === currentdomanda.correct_answer) {
       selectedAnswer.classList.remove("risposta");
       selectedAnswer.classList.add("correct");
-      localStorage.setItem("score", ++score); // Incremento dello score e salvataggio
+      localStorage.setItem("score", ++score);                                            // Incremento dello score e salvataggio
     } else {
       selectedAnswer.classList.remove("risposta");
       selectedAnswer.classList.add("wrong");
@@ -930,8 +941,6 @@ allButtons.forEach((button) => {
   });
 });
 }
-
-console.log(diff)
 
 
 // Funzione per reimpostare lo stato
@@ -943,13 +952,13 @@ function resetState() {
 
 // Funzione per mostrare la prossima domanda
 function showNextdomanda() {
-  if (domandaNumber < numQuest - 1) {
+  if (domandaNumber < numQuest - 1) {                                    // se la domanda corrente è minore al numero di domande scelto da noi, passa alla domanda successiva
     domandaNumber++;
-    divQuiz.classList.add("fade"); // Aggiungi la classe per la dissolvenza
+    divQuiz.classList.add("fade");                                       // Aggiungi la classe per la dissolvenza
     setTimeout(() => {
-      // Rimuovi la classe dopo un breve ritardo
+                                                                         // Rimuovi la classe dopo un breve ritardo
       divQuiz.classList.remove("fade");  
-     if (diff=="easy"){
+     if (diff=="easy"){                                                 // chiamo le funzioni in base alla difficoltà scelta da noi
         showdomandaeasy();
       }
       else if (diff=="middle"){
@@ -960,22 +969,23 @@ function showNextdomanda() {
       }
     }, 500);
   } else {
-    window.location = "./risultati.html";
+    window.location = "./risultati.html";                             // Dopo l'ultima domanda reindirizza alla pagina che mostra il risultato
   }
 }
 
-if (diff=="easy"){
-  showdomandaeasy();
+if (diff=="easy"){                                            // Se il valore diff inserito nel PopUp è uguale a easy
+  showdomandaeasy();                                          // Chiama la funzione showdomandaeasy()
 }
-else if (diff=="middle"){
-  showdomandamiddle();
+else if (diff=="middle"){                                     // Se il valore diff inserito nel PopUp è uguale a middle
+  showdomandamiddle();                                        // Chiama la funzione showdomandamiddle()
 }
 else{
-  showdomandahard();
+  showdomandahard();                                          // Altrimenti chiama la funzione showdomandahard()
 }
 
 
-if (answerButtons){answerButtons.addEventListener("click", showNextdomanda);}
+if (answerButtons){answerButtons.addEventListener("click", showNextdomanda);}             // Al click di ogni risposta, passa alla domanda successiva
+
 //-----------------------------------Inizio terza pagina (Flavio)--------------------------------------
 const risposteTotali = numQuest;
 const risposteCorrette = localStorage.getItem("score") || 0;
