@@ -903,12 +903,6 @@ function showdomandahard() {
   });
 }
 
-// Funzione per reimpostare lo stato
-function resetState() {
-  while (answerButtons.firstChild) {
-    answerButtons.removeChild(answerButtons.firstChild);
-  }
-}
 
 // Funzione per mostrare la prossima domanda
 function showNextdomanda() {
