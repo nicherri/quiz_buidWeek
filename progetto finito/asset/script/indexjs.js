@@ -1,13 +1,13 @@
 // -------------------------------------------------------- Prima pagina
 
-var btnProceed = document.getElementById("btn");
+var btnProceed = document.getElementById("btn");                           // Selezione difficoltà domande
 if (btnProceed) {
     btnProceed.addEventListener("click", function () {
       let isValid = false;
       while (!isValid) {
-        let diff = prompt("Type Difficulty: (easy, middle, hard)");
+        let diff = prompt("Type Difficulty: (easy, middle, hard)");       // Utilizzo di prompt per mostrare come Pop-Up il messaggio sulla difficoltà
         if (diff === "easy" || diff === "middle" || diff === "hard") {
-          localStorage.setItem("diff", diff);
+          localStorage.setItem("diff", diff);                             // Utilizzo di localStorage per salvare la variabile e riusarla in un secondo momento 
           isValid = true;
         } else {
           window.alert("Invalid!");
@@ -16,12 +16,12 @@ if (btnProceed) {
 
       isValid = false; // Resetta isValid per il nuovo controllo
       while (!isValid) {
-        let numQuest = prompt("How many questions do you want?");
-        if (!isNaN(numQuest) && parseInt(numQuest) > 0 && parseInt(numQuest)<=20 ) {
+        let numQuest = prompt("How many questions do you want?");                         // Prompt per mostrare a video quante domande si vogliono selezionare
+        if (!isNaN(numQuest) && parseInt(numQuest) > 5 && parseInt(numQuest)<=20 ) {
           localStorage.setItem("numQuest", numQuest);
           isValid = true;
         } else {
-          window.alert("Invalid! Please enter a number between 1 - 20.");
+          window.alert("Invalid! Please enter a number between 5 - 20.");                 // Range domande (5 - 20)
         }
       }
     });
