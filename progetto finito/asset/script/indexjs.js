@@ -1,40 +1,44 @@
 // -------------------------------------------------------- Prima pagina
 
-var btnProceed = document.getElementById("btn");                           // Selezione difficoltà domande
+var btnProceed = document.getElementById("btn"); // Selezione difficoltà domande
 if (btnProceed) {
-    btnProceed.addEventListener("click", function () {
-      let isValid = false;
-      while (!isValid) {
-        let diff = prompt("Type Difficulty: (easy, middle, hard)");       // Utilizzo di prompt per mostrare come Pop-Up il messaggio sulla difficoltà
-        if (diff === "easy" || diff === "middle" || diff === "hard") {
-          localStorage.setItem("diff", diff);                             // Utilizzo di localStorage per salvare la variabile e riusarla in un secondo momento 
-          isValid = true;
-        } else {
-          window.alert("Invalid!");
-        }
+  btnProceed.addEventListener("click", function () {
+    let isValid = false;
+    while (!isValid) {
+      let diff = prompt("Type Difficulty: (easy, middle, hard)"); // Utilizzo di prompt per mostrare come Pop-Up il messaggio sulla difficoltà
+      if (diff === "easy" || diff === "middle" || diff === "hard") {
+        localStorage.setItem("diff", diff); // Utilizzo di localStorage per salvare la variabile e riusarla in un secondo momento
+        isValid = true;
+      } else {
+        window.alert("Invalid!");
       }
+    }
 
-      isValid = false; // Resetta isValid per il nuovo controllo
-      while (!isValid) {
-        let numQuest = prompt("How many questions do you want?");                         // Prompt per mostrare a video quante domande si vogliono selezionare
-        if (!isNaN(numQuest) && parseInt(numQuest) >= 5 && parseInt(numQuest)<=20 ) {
-          localStorage.setItem("numQuest", numQuest);
-          isValid = true;
-        } else {
-          window.alert("Invalid! Please enter a number between 5 - 20.");                 // Range domande (5 - 20)
-        }
+    isValid = false; // Resetta isValid per il nuovo controllo
+    while (!isValid) {
+      let numQuest = prompt("How many questions do you want?"); // Prompt per mostrare a video quante domande si vogliono selezionare
+      if (
+        !isNaN(numQuest) &&
+        parseInt(numQuest) >= 5 &&
+        parseInt(numQuest) <= 20
+      ) {
+        localStorage.setItem("numQuest", numQuest);
+        isValid = true;
+      } else {
+        window.alert("Invalid! Please enter a number between 5 - 20."); // Range domande (5 - 20)
       }
-    });
-  }
-
+    }
+  });
+}
 
 ///-------------------------------------------------------- Seconda pagina
 
-const FULL_DASH_ARRAY = 283;          // Lunghezza del percorso del cerchio completo (283 si riferisce alla lunghezza del percorso in pixel )
-const WARNING_THRESHOLD = 10;         // Costante, utilizzata dopo per cambiare colore a 10 secondi
-const ALERT_THRESHOLD = 5;            // Costante, utilizzata dopo per cambiare colore a 5 secondi
+const FULL_DASH_ARRAY = 283; // Lunghezza del percorso del cerchio completo (283 si riferisce alla lunghezza del percorso in pixel )
+const WARNING_THRESHOLD = 10; // Costante, utilizzata dopo per cambiare colore a 10 secondi
+const ALERT_THRESHOLD = 5; // Costante, utilizzata dopo per cambiare colore a 5 secondi
 
-const COLOR_CODES = {                 // classi colorazione barra timer
+const COLOR_CODES = {
+  // classi colorazione barra timer
   info: {
     color: "green",
   },
@@ -80,13 +84,14 @@ document.getElementById("timer").innerHTML = `
  </div>
  `;
 
-startTimer();                                   // Chiamata funzione startTimer()
+startTimer(); // Chiamata funzione startTimer()
 
 function onTimesUp() {
   clearInterval(timerInterval);
 }
 
-function startTimer() {                        // Definizione funzione startTimer()
+function startTimer() {
+  // Definizione funzione startTimer()
   timerInterval = setInterval(() => {
     timePassed = timePassed += 1;
     timeLeft = TIME_LIMIT - timePassed;
@@ -95,14 +100,16 @@ function startTimer() {                        // Definizione funzione startTime
     setCircleDasharray();
     setRemainingPathColor(timeLeft);
 
-    if (timeLeft === 0) {                     // Quando il tempo scade, il timer viene resettato e mostra la domanda successiva
+    if (timeLeft === 0) {
+      // Quando il tempo scade, il timer viene resettato e mostra la domanda successiva
       onTimesUp();
       showNextdomanda();
     }
   }, 1000);
 }
 
-function formatTime(time) {                   // Funzione per mostrare il timer in secondi
+function formatTime(time) {
+  // Funzione per mostrare il timer in secondi
   const minutes = Math.floor(time / 60);
   let seconds = time % 60;
 
@@ -113,7 +120,8 @@ function formatTime(time) {                   // Funzione per mostrare il timer 
   return `${minutes}:${seconds}`;
 }
 
-function setRemainingPathColor(timeLeft) {             // Funzione che cambia il colore ogni qual volta il timer raggiunge i 10 e 5 secondi
+function setRemainingPathColor(timeLeft) {
+  // Funzione che cambia il colore ogni qual volta il timer raggiunge i 10 e 5 secondi
   const { alert, warning, info } = COLOR_CODES;
   if (timeLeft <= alert.threshold) {
     document
@@ -153,7 +161,8 @@ function calculateTimeFraction() {
   return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
 }
 
-function setCircleDasharray() {                       // Funzione che permette di colorare il percorso del timer
+function setCircleDasharray() {
+  // Funzione che permette di colorare il percorso del timer
   const circleDasharray = `${(
     calculateTimeFraction() * FULL_DASH_ARRAY
   ).toFixed(0)} 283`;
@@ -162,7 +171,8 @@ function setCircleDasharray() {                       // Funzione che permette d
     .setAttribute("stroke-dasharray", circleDasharray);
 }
 
-function restartTimer() {                             // Funzione per far ripartire il Timer 
+function restartTimer() {
+  // Funzione per far ripartire il Timer
   timePassed = 0;
   timeLeft = TIME_LIMIT;
   document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft);
@@ -172,7 +182,8 @@ function restartTimer() {                             // Funzione per far ripart
 
 /***************************** inizio js quiz II  pagina ******************************/
 
-const domandas = [                                  // Array domande facili
+const domandas = [
+  // Array domande facili
   {
     category: "Science: Computers",
     type: "multiple",
@@ -272,563 +283,488 @@ const domandas = [                                  // Array domande facili
     difficulty: "easy",
     domanda: "What is a computer?",
     correct_answer: " An electronic device",
-    incorrect_answers: [
-        "A vehicle",
-        "An animal",
-        "A tree"
-    ]
-},
-{
+    incorrect_answers: ["A vehicle", "An animal", "A tree"],
+  },
+  {
     category: "Computer Science",
     type: "multiple",
     difficulty: "easy",
     domanda: "Which of these is a computer brand?",
     correct_answer: "Dell",
-    incorrect_answers: [
-        "Ferrari",
-        "Samsung",
-        "Nike"
-    ]
-},
-{
+    incorrect_answers: ["Ferrari", "Samsung", "Nike"],
+  },
+  {
     category: "Computer Science",
     type: "multiple",
     difficulty: "easy",
     domanda: "Which of these is not an operating system?",
     correct_answer: "Linux",
-    incorrect_answers: [
-        "Android",
-        "iOS",
-        "Windows"
-    ]
-},
-{
+    incorrect_answers: ["Android", "iOS", "Windows"],
+  },
+  {
     category: "Computer Science",
     type: "multiple",
     difficulty: "easy",
     domanda: "Which of these is not a file type?",
     correct_answer: ".computer",
-    incorrect_answers: [
-        ".doc",
-        ".jpg",
-        ".mp3"
-    ]
-},
-{
+    incorrect_answers: [".doc", ".jpg", ".mp3"],
+  },
+  {
     category: "Computer Science",
     type: "multiple",
     difficulty: "easy",
     domanda: "What does the term 'Network' represent in computing?",
     correct_answer: "D) A collection of interconnected nodes",
-    incorrect_answers: [
-        "A sweater",
-        "A column",
-        "A fishing spot"
-    ]
-},
-{
+    incorrect_answers: ["A sweater", "A column", "A fishing spot"],
+  },
+  {
     category: "Computer Science",
     type: "multiple",
     difficulty: "easy",
     domanda: "Which of these is a programming language?",
     correct_answer: "Python",
-    incorrect_answers: [
-        "English",
-        "Italian",
-        "Spanish"
-    ]
-},
-{
+    incorrect_answers: ["English", "Italian", "Spanish"],
+  },
+  {
     category: "Computer Science",
     type: "boolean",
     difficulty: "easy",
     domanda: "Programming is a fundamental component of computer science",
     correct_answer: "true",
-    incorrect_answers: ["false"]
-},
-{
+    incorrect_answers: ["false"],
+  },
+  {
     category: "Computer Science",
     type: "boolean",
     difficulty: "easy",
     domanda: "The mouse is a common input device associated with a computer",
     correct_answer: "true",
-    incorrect_answers: ["false"]
-},
-{
+    incorrect_answers: ["false"],
+  },
+  {
     category: "Computer Science",
     type: "boolean",
     difficulty: "easy",
-    domanda: "Computers solve mathematical problems much more efficiently than humans",
+    domanda:
+      "Computers solve mathematical problems much more efficiently than humans",
     correct_answer: "true",
-    incorrect_answers: ["false"]
-},
-{
+    incorrect_answers: ["false"],
+  },
+  {
     category: "Computer Science",
     type: "boolean",
     difficulty: "easy",
     domanda: "HTML is a programming language used to create web pages",
     correct_answer: "false",
-    incorrect_answers: ["true"]
-},
+    incorrect_answers: ["true"],
+  },
 ];
 
-const questionsMiddle = [                                           // Array domande difficoltà media
+const questionsMiddle = [
+  // Array domande difficoltà media
   {
-      category: "Web Development",
-      type: "multiple",
-      difficulty: "middle",
-      domanda: "What is the purpose of HTML in web development?",
-      correct_answer: "Structure the content of a website",
-      incorrect_answers: [
-        "Add interactivity and dynamic elements to a website",
-        "Define the style and layout of a website",
-        "Make a website interactive",
-      ],
-    },
-    {
-      category: "Science: Computers",
-      type: "multiple",
-      difficulty: "middle",
-      domanda: "Which of the following is NOT a valid data type in JavaScript?",
-      correct_answer: "Array",
-      incorrect_answers: [
-        "Boolean",
-        "Number",
-        "String",
-      ],
-    },
-    {
-      category: "Web Development",
-      type: "multiple",
-      difficulty: "middle",
-      domanda: "What does the 'function' keyword signify in JavaScript?",
-      correct_answer: "Declaring a reusable block of code",
-      incorrect_answers: [
-        "A built-in method",
-        "A loop statement",
-        "A data type",
-      ],
-    },
-    {
-      category: "Web Development",
-      type: "multiple",
-      difficulty: "middle",
-      domanda: "In HTML, what tag is used to create a hyperlink?",
-      correct_answer: "&lt;a&gt;" ,
-      incorrect_answers: [
-        "&lt;src&gt;",
-        "&lt;link&gt;",
-        "&lt;href&gt;",
-      ],
-    },
-    {
-      category: "Web Development",
-      type: "multiple",
-      difficulty: "middle",
-      domanda: "Which CSS property is used to create space between an element's border and its content?",
-      correct_answer: "Padding",
-      incorrect_answers: [
-        "Margin",
-        "Border-spacing",
-        "Space"
-      ],
-    },
-    {
-      category: "Web Development",
-      type: "multiple",
-      difficulty: "middle",
-      domanda: "What symbol is used for single-line comments in JavaScript?",
-      correct_answer: "//",
-      incorrect_answers: [
-        "--!&gt;",
-        "/*",
-        "&lt;!--",
-      ],
-    },
-    {
-      category: "Web Development",
-      type: "multiple",
-      difficulty: "middle",
-      domanda: "What is the purpose of the <script> tag in HTML?",
-      correct_answer: "Write JavaScript code within an HTML document",
-      incorrect_answers: [
-        "Load external images",
-        "Style the content of a webpage",
-        "Link to an external CSS file",
-      ],
-    },
-    {
-      category: "Web Development",
-      type: "multiple",
-      difficulty: "middle",
-      domanda: "What JavaScript function is used to print content to the console for debugging?",
-      correct_answer: "console.log()",
-      incorrect_answers: [
-        "print()",
-        "log()",
-        "write()",
-      ],
-    },
-    {
-      category: "Web Development",
-      type: "multiple",
-      difficulty: "middle",
-      domanda: "Which HTML tag is used to define the structure of a table?",
-      correct_answer: "&lt;table&gt;",
-      incorrect_answers: [
-        "&lt;tr&gt;",
-        "&lt;row&gt;",
-        "&lt;tab&gt;",
-      ],
-    },
-    {
-      category: "Web Development",
-      type: "boolean",
-      difficulty: "middle",
-      domanda: "HTML is responsible for the structure of a webpage, while CSS is responsible for the presentation of the content on the webpage.",
-      correct_answer: "True ",
-      incorrect_answers: ["False"]
-    },
-    {
-      category: "Web Development",
-      type: "boolean",
-      difficulty: "middle",
-      domanda: "JavaScript is a server-side scripting language that helps with the functionality of a website.",
-      correct_answer: "False",
-      incorrect_answers: ["True "]
-    },
-    {
-      category: "Web Development",
-      type: "boolean",
-      difficulty: "middle",
-      domanda: "In HTML, the '<head>' tag is where you would typically find the content that is directly displayed on the webpage.",
-      correct_answer: "False",
-      incorrect_answers: ["True "]
-    },
-    {
-      category: "Web Development",
-      type: "boolean",
-      difficulty: "middle",
-      domanda: "CSS can be directly embedded within an HTML file using the '<css>' tag.",
-      correct_answer: "False",
-      incorrect_answers: ["True "]
-    },
-    {
-      category: "Web Development",
-      type: "boolean",
-      difficulty: "middle",
-      domanda: "Inline CSS is when you apply CSS styling directly within the HTML element using the 'style' attribute.",
-      correct_answer: "True ",
-      incorrect_answers: ["False"]
-    },
-    {
-      category: "Web Development",
-      type: "boolean",
-      difficulty: "middle",
-      domanda: "HTML is not a programming language but a markup language used to structure content on the web.",
-      correct_answer: "True ",
-      incorrect_answers: ["False"]
-    },
-    {
-      category: "Web Development",
-      type: "boolean",
-      difficulty: "middle",
-      domanda: "JavaScript is mainly used for client-side scripting to make web pages interactive.",
-      correct_answer: "True",
-      incorrect_answers: ["False"]
-    },
-    {
-      category: "Web Development",
-      type: "boolean",
-      difficulty: "middle",
-      domanda: "CSS stands for Central Style Sheets, which is a way to globally style web pages across different websites.",
-      correct_answer: "False",
-      incorrect_answers: ["True "]
-    },
-    {
-      category: "Web Development",
-      type: "boolean",
-      difficulty: "middle",
-      domanda: "JavaScript is mandatory for creating interactive elements on a webpage, such as buttons that trigger specific actions.",
-      correct_answer: "True ",
-      incorrect_answers: ["False"]
-    },
-    {
-      category: "Web Development",
-      type: "boolean",
-      difficulty: "middle",
-      domanda: "The use of external CSS files allows for consistent styling across multiple HTML pages.",
-      correct_answer: "True ",
-      incorrect_answers: ["False"]
-    }
-  ];
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "middle",
+    domanda: "What is the purpose of HTML in web development?",
+    correct_answer: "Structure the content of a website",
+    incorrect_answers: [
+      "Add interactivity and dynamic elements to a website",
+      "Define the style and layout of a website",
+      "Make a website interactive",
+    ],
+  },
+  {
+    category: "Science: Computers",
+    type: "multiple",
+    difficulty: "middle",
+    domanda: "Which of the following is NOT a valid data type in JavaScript?",
+    correct_answer: "Array",
+    incorrect_answers: ["Boolean", "Number", "String"],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "middle",
+    domanda: "What does the 'function' keyword signify in JavaScript?",
+    correct_answer: "Declaring a reusable block of code",
+    incorrect_answers: ["A built-in method", "A loop statement", "A data type"],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "middle",
+    domanda: "In HTML, what tag is used to create a hyperlink?",
+    correct_answer: "&lt;a&gt;",
+    incorrect_answers: ["&lt;src&gt;", "&lt;link&gt;", "&lt;href&gt;"],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "middle",
+    domanda:
+      "Which CSS property is used to create space between an element's border and its content?",
+    correct_answer: "Padding",
+    incorrect_answers: ["Margin", "Border-spacing", "Space"],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "middle",
+    domanda: "What symbol is used for single-line comments in JavaScript?",
+    correct_answer: "//",
+    incorrect_answers: ["--!&gt;", "/*", "&lt;!--"],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "middle",
+    domanda: "What is the purpose of the <script> tag in HTML?",
+    correct_answer: "Write JavaScript code within an HTML document",
+    incorrect_answers: [
+      "Load external images",
+      "Style the content of a webpage",
+      "Link to an external CSS file",
+    ],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "middle",
+    domanda:
+      "What JavaScript function is used to print content to the console for debugging?",
+    correct_answer: "console.log()",
+    incorrect_answers: ["print()", "log()", "write()"],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "middle",
+    domanda: "Which HTML tag is used to define the structure of a table?",
+    correct_answer: "&lt;table&gt;",
+    incorrect_answers: ["&lt;tr&gt;", "&lt;row&gt;", "&lt;tab&gt;"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "middle",
+    domanda:
+      "HTML is responsible for the structure of a webpage, while CSS is responsible for the presentation of the content on the webpage.",
+    correct_answer: "True ",
+    incorrect_answers: ["False"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "middle",
+    domanda:
+      "JavaScript is a server-side scripting language that helps with the functionality of a website.",
+    correct_answer: "False",
+    incorrect_answers: ["True "],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "middle",
+    domanda:
+      "In HTML, the '<head>' tag is where you would typically find the content that is directly displayed on the webpage.",
+    correct_answer: "False",
+    incorrect_answers: ["True "],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "middle",
+    domanda:
+      "CSS can be directly embedded within an HTML file using the '<css>' tag.",
+    correct_answer: "False",
+    incorrect_answers: ["True "],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "middle",
+    domanda:
+      "Inline CSS is when you apply CSS styling directly within the HTML element using the 'style' attribute.",
+    correct_answer: "True ",
+    incorrect_answers: ["False"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "middle",
+    domanda:
+      "HTML is not a programming language but a markup language used to structure content on the web.",
+    correct_answer: "True ",
+    incorrect_answers: ["False"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "middle",
+    domanda:
+      "JavaScript is mainly used for client-side scripting to make web pages interactive.",
+    correct_answer: "True",
+    incorrect_answers: ["False"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "middle",
+    domanda:
+      "CSS stands for Central Style Sheets, which is a way to globally style web pages across different websites.",
+    correct_answer: "False",
+    incorrect_answers: ["True "],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "middle",
+    domanda:
+      "JavaScript is mandatory for creating interactive elements on a webpage, such as buttons that trigger specific actions.",
+    correct_answer: "True ",
+    incorrect_answers: ["False"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "middle",
+    domanda:
+      "The use of external CSS files allows for consistent styling across multiple HTML pages.",
+    correct_answer: "True ",
+    incorrect_answers: ["False"],
+  },
+];
 
-
- const questionsDifficult = [                                 // Array domande difficili
-    {
-        category: "Web Development",
-        type: "multiple",
-        difficulty: "hard",
-        domanda: "What is the meaning of the acronym HTML?",
-        correct_answer: "Hyper Text Markup Language",
-        incorrect_answers: [
-          "Home Technology Markup Language",
-          "Home Text Markup Language",
-          "Hyperlinks and Text Markup Language",
-        ],
-    },
-    {
-        category: "Web Development",
-        type: "multiple",
-        difficulty: "hard",
-        domanda: "What is the Correct attribute for linking a CSS file to an HTML document?",
-        correct_answer: "href",
-        incorrect_answers: [
-          "stylesheet",
-          "hreflang",
-          "rel",
-        ],
-    },
-    {
-        category: "Web Development",
-        type: "multiple",
-        difficulty: "hard",
-        domanda: "Which of the following is an example of a CSS selector that selects all elements with a 'button' class?",
-        correct_answer: ".button",
-        incorrect_answers: [
-          "button",
-          "button.button",
-          "button",
-        ],
-    },
-    {
-        category: "Web Development",
-        type: "multiple",
-        difficulty: "hard",
-        domanda: "What does 'JS' mean in JavaScript?",
-        correct_answer: "JavaScript",
-        incorrect_answers: [
-          "Java Standalone",
-          "Just Style",
-          "Jump Start",
-        ],
-    },
-    {
-        category: "Web Development",
-        type: "multiple",
-        difficulty: "hard",
-        domanda: "Which of the following represents an example of a correct variable declaration in JavaScript?",
-        correct_answer: "let x = 5;",
-        incorrect_answers: [
-          "const x = 5;",
-          "var x = 5;",
-          "variable x = 5;",
-        ],
-    },
-    {
-        category: "Web Development",
-        type: "multiple",
-        difficulty: "hard",
-        domanda: "What symbol indicates Strict Equality in JavaScript?",
-        correct_answer: "===",
-        incorrect_answers: [
-          "=",
-          "==",
-          "!==",
-        ],
-    },
-    {
-        category: "Web Development",
-        type: "multiple",
-        difficulty: "hard",
-        domanda: "What is the correct output of the following JavaScript code: console.log(1 + '2' + 3)?",
-        correct_answer: "123",
-        incorrect_answers: [
-          "6",
-          "15",
-          "21",
-        ],
-    },
-    {
-        category: "Web Development",
-        type: "multiple",
-        difficulty: "hard",
-        domanda: "What does the .join() method do in JavaScript?",
-        correct_answer: "Concatenates all elements of an array into a string",
-        incorrect_answers: [
-          "Sorts the elements of an array in descending order",
-          "Returns the largest element of an array",
-          "Deletes all duplicate elements from an array",
-        ],
-    },
-    {
-        category: "Web Development",
-        type: "multiple",
-        difficulty: "hard",
-        domanda: "Which of the following is not a primitive data type in JavaScript?",
-        correct_answer: "object",
-        incorrect_answers: [
-          "string",
-          "undefined",
-          "boolean",
-        ],
-    },
-    {
-        category: "Web Development",
-        type: "multiple",
-        difficulty: "hard",
-        domanda: "What is the correct syntax for commenting in HTML?",
-        correct_answer: "// Comment",
-        incorrect_answers: [
-          "/* Comment */",
-          "* Comment *",
-          "<!-- Comment -->",
-        ],
-    },
-      {
-            category: "Web Development",
-            type: "boolean",
-            difficulty: "hard",
-            domanda: "Can JavaScript code be embedded directly within the '<head>' tag of an HTML document?",
-            correct_answer: "true",
-            incorrect_answers: [
-                "false"
-            ]
-        },
-        {
-            category: "Web Development",
-            type: "boolean",
-            difficulty: "hard",
-            domanda: "Does CSS abbreviate 'Cascading Stylesheets'?",
-            correct_answer: "true",
-            incorrect_answers: [
-                "false"
-            ]
-        },
-        {
-            category: "Web Development",
-            type: "boolean",
-            difficulty: "hard",
-            domanda: "Is the main tag for writing JavaScript code directly in an HTML document <javascript>?",
-            correct_answer: "false",
-            incorrect_answers: [
-                "true"
-            ]
-        },
-        {
-            category: "Web Development",
-            type: "boolean",
-            difficulty: "hard",
-            domanda: "With CSS, is it possible to modify the content of an HTML document?",
-            correct_answer: "false",
-            incorrect_answers: [
-                "true"
-            ]
-        },
-        {
-            category: "Web Development",
-            type: "boolean",
-            difficulty: "hard",
-            domanda: "Does the CSS selector 'div p' select all <p> elements that are direct descendants of a <div> element?",
-            correct_answer: "true",
-            incorrect_answers: [
-                "false"
-            ]
-        },
-        {
-            category: "Web Development",
-            type: "boolean",
-            difficulty: "hard",
-            domanda: "Does the 'onMouseOver' event in JavaScript trigger when the mouse exits the element?",
-            correct_answer: "false",
-            incorrect_answers: [
-                "true"
-            ]
-        },
-        {
-            category: "Web Development",
-            type: "boolean",
-            difficulty: "hard",
-            domanda: "To include an external CSS file in an HTML document, the <style> tag is used.",
-            correct_answer: "false",
-            incorrect_answers: [
-                "true"
-            ]
-        },
-        {
-            category: "Web Development",
-            type: "boolean",
-            difficulty: "hard",
-            domanda: "In HTML, is the <canvas> tag used to draw graphics, animations, or games using JavaScript scripts?",
-            correct_answer: "true",
-            incorrect_answers: [
-                "false"
-            ]
-        },
-        {
-            category: "Web Development",
-            type: "boolean",
-            difficulty: "hard",
-            domanda: "Does the CSS selector '* {}' select all elements on the page?",
-            correct_answer: "true",
-            incorrect_answers: [
-                "false"
-            ]
-        },
-        {
-            category: "Web Development",
-            type: "boolean",
-            difficulty: "hard",
-            domanda: "Can a 'for' loop in JavaScript be written as $for(i=0; i<5; i++)${...}$?",
-            correct_answer: "true",
-            incorrect_answers: [
-                "false"
-            ]
-        }
-    ];
-
+const questionsDifficult = [
+  // Array domande difficili
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "hard",
+    domanda: "What is the meaning of the acronym HTML?",
+    correct_answer: "Hyper Text Markup Language",
+    incorrect_answers: [
+      "Home Technology Markup Language",
+      "Home Text Markup Language",
+      "Hyperlinks and Text Markup Language",
+    ],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "hard",
+    domanda:
+      "What is the Correct attribute for linking a CSS file to an HTML document?",
+    correct_answer: "href",
+    incorrect_answers: ["stylesheet", "hreflang", "rel"],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "hard",
+    domanda:
+      "Which of the following is an example of a CSS selector that selects all elements with a 'button' class?",
+    correct_answer: ".button",
+    incorrect_answers: ["button", "button.button", "button"],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "hard",
+    domanda: "What does 'JS' mean in JavaScript?",
+    correct_answer: "JavaScript",
+    incorrect_answers: ["Java Standalone", "Just Style", "Jump Start"],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "hard",
+    domanda:
+      "Which of the following represents an example of a correct variable declaration in JavaScript?",
+    correct_answer: "let x = 5;",
+    incorrect_answers: ["const x = 5;", "var x = 5;", "variable x = 5;"],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "hard",
+    domanda: "What symbol indicates Strict Equality in JavaScript?",
+    correct_answer: "===",
+    incorrect_answers: ["=", "==", "!=="],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "hard",
+    domanda:
+      "What is the correct output of the following JavaScript code: console.log(1 + '2' + 3)?",
+    correct_answer: "123",
+    incorrect_answers: ["6", "15", "21"],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "hard",
+    domanda: "What does the .join() method do in JavaScript?",
+    correct_answer: "Concatenates all elements of an array into a string",
+    incorrect_answers: [
+      "Sorts the elements of an array in descending order",
+      "Returns the largest element of an array",
+      "Deletes all duplicate elements from an array",
+    ],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "hard",
+    domanda:
+      "Which of the following is not a primitive data type in JavaScript?",
+    correct_answer: "object",
+    incorrect_answers: ["string", "undefined", "boolean"],
+  },
+  {
+    category: "Web Development",
+    type: "multiple",
+    difficulty: "hard",
+    domanda: "What is the correct syntax for commenting in HTML?",
+    correct_answer: "// Comment",
+    incorrect_answers: ["/* Comment */", "* Comment *", "<!-- Comment -->"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "hard",
+    domanda:
+      "Can JavaScript code be embedded directly within the '<head>' tag of an HTML document?",
+    correct_answer: "true",
+    incorrect_answers: ["false"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "hard",
+    domanda: "Does CSS abbreviate 'Cascading Stylesheets'?",
+    correct_answer: "true",
+    incorrect_answers: ["false"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "hard",
+    domanda:
+      "Is the main tag for writing JavaScript code directly in an HTML document <javascript>?",
+    correct_answer: "false",
+    incorrect_answers: ["true"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "hard",
+    domanda:
+      "With CSS, is it possible to modify the content of an HTML document?",
+    correct_answer: "false",
+    incorrect_answers: ["true"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "hard",
+    domanda:
+      "Does the CSS selector 'div p' select all <p> elements that are direct descendants of a <div> element?",
+    correct_answer: "true",
+    incorrect_answers: ["false"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "hard",
+    domanda:
+      "Does the 'onMouseOver' event in JavaScript trigger when the mouse exits the element?",
+    correct_answer: "false",
+    incorrect_answers: ["true"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "hard",
+    domanda:
+      "To include an external CSS file in an HTML document, the <style> tag is used.",
+    correct_answer: "false",
+    incorrect_answers: ["true"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "hard",
+    domanda:
+      "In HTML, is the <canvas> tag used to draw graphics, animations, or games using JavaScript scripts?",
+    correct_answer: "true",
+    incorrect_answers: ["false"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "hard",
+    domanda: "Does the CSS selector '* {}' select all elements on the page?",
+    correct_answer: "true",
+    incorrect_answers: ["false"],
+  },
+  {
+    category: "Web Development",
+    type: "boolean",
+    difficulty: "hard",
+    domanda:
+      "Can a 'for' loop in JavaScript be written as $for(i=0; i<5; i++)${...}$?",
+    correct_answer: "true",
+    incorrect_answers: ["false"],
+  },
+];
 
 // ----------------------------Fine domande
-const divQuiz = document.getElementById("quiz");                     
+const divQuiz = document.getElementById("quiz");
 const domandaElement = document.getElementById("domanda");
 const answerButtons = document.getElementById("button_risposte");
 const question_n = document.getElementById("ndomanda");
 const totdomande = document.getElementById("totdomande");
-const diff = localStorage.getItem("diff");                    // Riporto il valore diff preso dal Pop-up
-const numQuest = localStorage.getItem("numQuest");            // Riporto il valore numQuest preso dal Pop-up
+const diff = localStorage.getItem("diff"); // Riporto il valore diff preso dal Pop-up
+const numQuest = localStorage.getItem("numQuest"); // Riporto il valore numQuest preso dal Pop-up
 
-
-let domandaNumber = 0;                                        // Variabile inizializzata a 0 che verrà utilizzata per mostrare a video il valore della domanda corrente
-let score = 0;                                                // Variabile inizializzata a 0 che verrà incrementata ogni qual volta verrà selezionata la risposta giusta
-
+let domandaNumber = 0; // Variabile inizializzata a 0 che verrà utilizzata per mostrare a video il valore della domanda corrente
+let score = 0; // Variabile inizializzata a 0 che verrà incrementata ogni qual volta verrà selezionata la risposta giusta
 
 // Funzione per mostrare la domanda corrente
-function showdomandaeasy() {                                  // Funzione per mostrare le domande prese dall'array di domande facili
-  restartTimer();                                             // Richiamo la funzio restartTimer per far ripartire il timer ogni volta che si passà alla domanda successiva
-
-
+function showdomandaeasy() {
+  // Funzione per mostrare le domande prese dall'array di domande facili
+  restartTimer(); // Richiamo la funzio restartTimer per far ripartire il timer ogni volta che si passà alla domanda successiva
 
   // Utilizzeremo gli if come condizione una sola variabile e restituisce true o false se trova o meno l'elemento (Utilizzato per evitare conflitti)
   // Restituisce sempre true ed esegue l'istruzione, nelle pagine dove non è presente quell'elemento restituisce false e non esegue l'istruzione
 
-  let currentdomanda = domandas[domandaNumber];                                             // domanda corrente
-  let domandaNo = domandaNumber + 1;                                                        // domanda corrente mostrata a video
-  if (domandaElement){domandaElement.innerHTML = currentdomanda.domanda;}                   // Posiziono il numeretto della domanda corrente nell'HTML per mostrarla a video
-  if (question_n){question_n.innerHTML = domandaNo;}                                        //numero della domanda
-  if (totdomande){totdomande.innerHTML = "  " + "/ " + numQuest;}                           // num tot domande
+  let currentdomanda = domandas[domandaNumber]; // domanda corrente
+  let domandaNo = domandaNumber + 1; // domanda corrente mostrata a video
+  if (domandaElement) {
+    domandaElement.innerHTML = currentdomanda.domanda;
+  } // Posiziono il numeretto della domanda corrente nell'HTML per mostrarla a video
+  if (question_n) {
+    question_n.innerHTML = domandaNo;
+  } //numero della domanda
+  if (totdomande) {
+    totdomande.innerHTML = "  " + "/ " + numQuest;
+  } // num tot domande
 
-
-  let answers = [                                                                           
-    currentdomanda.correct_answer,                                                          // Array contente tutte le risposte (corrette e sbagliate) di ogni singolo oggetto
-    ...currentdomanda.incorrect_answers,                                          
+  let answers = [
+    currentdomanda.correct_answer, // Array contente tutte le risposte (corrette e sbagliate) di ogni singolo oggetto
+    ...currentdomanda.incorrect_answers,
   ];
- if (answerButtons) {answerButtons.innerHTML = "";}                                         // Mettiamo "" per resettare ogni volta i bottoni e non mostrare i bottoni precedenti
+  if (answerButtons) {
+    answerButtons.innerHTML = "";
+  } // Mettiamo "" per resettare ogni volta i bottoni e non mostrare i bottoni precedenti
 
-
- // Template literals per creare i bottoni tanto quanto sono le risposte per ogni singolo oggetto 
+  // Template literals per creare i bottoni tanto quanto sono le risposte per ogni singolo oggetto
 
   while (answers.length > 0) {
-    let randomIndex = Math.floor(Math.random() * answers.length);                                                              
+    let randomIndex = Math.floor(Math.random() * answers.length);
     let newAnswer = `
           <button class="risposta">                                                         
               <span id="ansvalue">
@@ -836,39 +772,51 @@ function showdomandaeasy() {                                  // Funzione per mo
               </span>
           </button>
       `;
-    if (answerButtons){answerButtons.innerHTML += newAnswer;}
-    answers.splice(randomIndex, 1);                                                         // Rimuove la risposta inserita per evitare la duplicazione
+    if (answerButtons) {
+      answerButtons.innerHTML += newAnswer;
+    }
+    answers.splice(randomIndex, 1); // Rimuove la risposta inserita per evitare la duplicazione
   }
   const allButtons = document.querySelectorAll(".risposta");
-allButtons.forEach((button) => {
-  button.addEventListener("click", function () {                                            // Funzione al click di ogni risposta
-    const selectedAnswer = this;
-    const answerText = selectedAnswer.textContent.trim();
-    if (answerText === currentdomanda.correct_answer) {
-      selectedAnswer.classList.remove("risposta");
-      selectedAnswer.classList.add("correct");
-      localStorage.setItem("score", ++score);                                               // Incremento dello score e salvataggio
-    } else {
-      selectedAnswer.classList.remove("risposta");
-      selectedAnswer.classList.add("wrong");
-    }
+  allButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      // Funzione al click di ogni risposta
+      const selectedAnswer = this;
+      const answerText = selectedAnswer.textContent.trim();
+      if (answerText === currentdomanda.correct_answer) {
+        selectedAnswer.classList.remove("risposta");
+        selectedAnswer.classList.add("correct");
+        localStorage.setItem("score", ++score); // Incremento dello score e salvataggio
+      } else {
+        selectedAnswer.classList.remove("risposta");
+        selectedAnswer.classList.add("wrong");
+      }
+    });
   });
-});
 }
 
-function showdomandamiddle() {                                                          // Funzione identica a quella precedente per le domande con difficoltà middle
-  restartTimer(); 
+function showdomandamiddle() {
+  // Funzione identica a quella precedente per le domande con difficoltà middle
+  restartTimer();
   let currentdomanda = questionsMiddle[domandaNumber];
   let domandaNo = domandaNumber + 1;
-  if (domandaElement){domandaElement.innerHTML = currentdomanda.domanda;}
-  if (question_n){question_n.innerHTML = domandaNo;}                                    //numero della domanda
-  if (totdomande){totdomande.innerHTML = "  " + "/ " + numQuest;}                       // num tot domande
+  if (domandaElement) {
+    domandaElement.innerHTML = currentdomanda.domanda;
+  }
+  if (question_n) {
+    question_n.innerHTML = domandaNo;
+  } //numero della domanda
+  if (totdomande) {
+    totdomande.innerHTML = "  " + "/ " + numQuest;
+  } // num tot domande
 
   let answers = [
     currentdomanda.correct_answer,
     ...currentdomanda.incorrect_answers,
   ];
- if (answerButtons) {answerButtons.innerHTML = "";}
+  if (answerButtons) {
+    answerButtons.innerHTML = "";
+  }
 
   while (answers.length > 0) {
     let randomIndex = Math.floor(Math.random() * answers.length);
@@ -879,39 +827,50 @@ function showdomandamiddle() {                                                  
               </span>
           </button>
       `;
-    if (answerButtons){answerButtons.innerHTML += newAnswer;}
-    answers.splice(randomIndex, 1);                                                     // Rimuove la risposta inserita per evitare la duplicazione
+    if (answerButtons) {
+      answerButtons.innerHTML += newAnswer;
+    }
+    answers.splice(randomIndex, 1); // Rimuove la risposta inserita per evitare la duplicazione
   }
   const allButtons = document.querySelectorAll(".risposta");
-allButtons.forEach((button) => {
-  button.addEventListener("click", function () {
-    const selectedAnswer = this;
-    const answerText = selectedAnswer.textContent.trim();
-    if (answerText === currentdomanda.correct_answer) {
-      selectedAnswer.classList.remove("risposta");
-      selectedAnswer.classList.add("correct");
-      localStorage.setItem("score", ++score);                                           // Incremento dello score e salvataggio
-    } else {
-      selectedAnswer.classList.remove("risposta");
-      selectedAnswer.classList.add("wrong");
-    }
+  allButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const selectedAnswer = this;
+      const answerText = selectedAnswer.textContent.trim();
+      if (answerText === currentdomanda.correct_answer) {
+        selectedAnswer.classList.remove("risposta");
+        selectedAnswer.classList.add("correct");
+        localStorage.setItem("score", ++score); // Incremento dello score e salvataggio
+      } else {
+        selectedAnswer.classList.remove("risposta");
+        selectedAnswer.classList.add("wrong");
+      }
+    });
   });
-});
 }
 
-function showdomandahard() {                                                            // Funzione identica a quella precedente per le domande con difficoltà difficult
+function showdomandahard() {
+  // Funzione identica a quella precedente per le domande con difficoltà difficult
   restartTimer();
   let currentdomanda = questionsDifficult[domandaNumber];
   let domandaNo = domandaNumber + 1;
-  if (domandaElement){domandaElement.innerHTML = currentdomanda.domanda;}
-  if (question_n){question_n.innerHTML = domandaNo;}                                    //numero della domanda
-  if (totdomande){totdomande.innerHTML = "  " + "/ " + numQuest;}                       // num tot domande
+  if (domandaElement) {
+    domandaElement.innerHTML = currentdomanda.domanda;
+  }
+  if (question_n) {
+    question_n.innerHTML = domandaNo;
+  } //numero della domanda
+  if (totdomande) {
+    totdomande.innerHTML = "  " + "/ " + numQuest;
+  } // num tot domande
 
   let answers = [
     currentdomanda.correct_answer,
     ...currentdomanda.incorrect_answers,
   ];
- if (answerButtons) {answerButtons.innerHTML = "";}
+  if (answerButtons) {
+    answerButtons.innerHTML = "";
+  }
 
   while (answers.length > 0) {
     let randomIndex = Math.floor(Math.random() * answers.length);
@@ -922,26 +881,27 @@ function showdomandahard() {                                                    
               </span>
           </button>
       `;
-    if (answerButtons){answerButtons.innerHTML += newAnswer;}
-    answers.splice(randomIndex, 1);                                                      // Rimuove la risposta inserita per evitare la duplicazione
+    if (answerButtons) {
+      answerButtons.innerHTML += newAnswer;
+    }
+    answers.splice(randomIndex, 1); // Rimuove la risposta inserita per evitare la duplicazione
   }
   const allButtons = document.querySelectorAll(".risposta");
-allButtons.forEach((button) => {
-  button.addEventListener("click", function () {
-    const selectedAnswer = this;
-    const answerText = selectedAnswer.textContent.trim();
-    if (answerText === currentdomanda.correct_answer) {
-      selectedAnswer.classList.remove("risposta");
-      selectedAnswer.classList.add("correct");
-      localStorage.setItem("score", ++score);                                            // Incremento dello score e salvataggio
-    } else {
-      selectedAnswer.classList.remove("risposta");
-      selectedAnswer.classList.add("wrong");
-    }
+  allButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const selectedAnswer = this;
+      const answerText = selectedAnswer.textContent.trim();
+      if (answerText === currentdomanda.correct_answer) {
+        selectedAnswer.classList.remove("risposta");
+        selectedAnswer.classList.add("correct");
+        localStorage.setItem("score", ++score); // Incremento dello score e salvataggio
+      } else {
+        selectedAnswer.classList.remove("risposta");
+        selectedAnswer.classList.add("wrong");
+      }
+    });
   });
-});
 }
-
 
 // Funzione per reimpostare lo stato
 function resetState() {
@@ -952,44 +912,46 @@ function resetState() {
 
 // Funzione per mostrare la prossima domanda
 function showNextdomanda() {
-  if (domandaNumber < numQuest - 1) {                                    // se la domanda corrente è minore al numero di domande scelto da noi, passa alla domanda successiva
+  if (domandaNumber < numQuest - 1) {
+    // se la domanda corrente è minore al numero di domande scelto da noi, passa alla domanda successiva
     domandaNumber++;
-    divQuiz.classList.add("fade");                                       // Aggiungi la classe per la dissolvenza
+    divQuiz.classList.add("fade"); // Aggiungi la classe per la dissolvenza
     setTimeout(() => {
-                                                                         // Rimuovi la classe dopo un breve ritardo
-      divQuiz.classList.remove("fade");  
-     if (diff=="easy"){                                                 // chiamo le funzioni in base alla difficoltà scelta da noi
+      // Rimuovi la classe dopo un breve ritardo
+      divQuiz.classList.remove("fade");
+      if (diff == "easy") {
+        // chiamo le funzioni in base alla difficoltà scelta da noi
         showdomandaeasy();
-      }
-      else if (diff=="middle"){
+      } else if (diff == "middle") {
         showdomandamiddle();
-      }
-      else{
+      } else {
         showdomandahard();
       }
     }, 500);
   } else {
-    window.location = "./risultati.html";                             // Dopo l'ultima domanda reindirizza alla pagina che mostra il risultato
+    window.location = "./risultati.html"; // Dopo l'ultima domanda reindirizza alla pagina che mostra il risultato
   }
 }
 
-if (diff=="easy"){                                            // Se il valore diff inserito nel PopUp è uguale a easy
-  showdomandaeasy();                                          // Chiama la funzione showdomandaeasy()
-}
-else if (diff=="middle"){                                     // Se il valore diff inserito nel PopUp è uguale a middle
-  showdomandamiddle();                                        // Chiama la funzione showdomandamiddle()
-}
-else{
-  showdomandahard();                                          // Altrimenti chiama la funzione showdomandahard()
+if (diff == "easy") {
+  // Se il valore diff inserito nel PopUp è uguale a easy
+  showdomandaeasy(); // Chiama la funzione showdomandaeasy()
+} else if (diff == "middle") {
+  // Se il valore diff inserito nel PopUp è uguale a middle
+  showdomandamiddle(); // Chiama la funzione showdomandamiddle()
+} else {
+  showdomandahard(); // Altrimenti chiama la funzione showdomandahard()
 }
 
-
-if (answerButtons){answerButtons.addEventListener("click", showNextdomanda);}             // Al click di ogni risposta, passa alla domanda successiva
+if (answerButtons) {
+  answerButtons.addEventListener("click", showNextdomanda);
+} // Al click di ogni risposta, passa alla domanda successiva
 
 //-----------------------------------Inizio terza pagina (Flavio)--------------------------------------
-const risposteTotali = numQuest;
-const risposteCorrette = localStorage.getItem("score") || 0;
-const risposteSbagliate = risposteTotali - risposteCorrette;
+
+const risposteTotali = numQuest; // numero di domande totali scelte
+const risposteCorrette = localStorage.getItem("score") || 0; //riprende lo score salvato
+const risposteSbagliate = risposteTotali - risposteCorrette; // mostra risposte sbagliate (differenza totali - giuste)
 
 // Calcola le percentuali in base al numero totale di domande
 const percentualeCorrette = Math.round(
@@ -998,6 +960,7 @@ const percentualeCorrette = Math.round(
 const percentualeSbagliate = 100 - percentualeCorrette;
 
 // Visualizza percentuali nei paragrafi
+//mostra a schermo le percentuali calcolate
 if (document.getElementById("percentualegiusta")) {
   document.getElementById(
     "percentualegiusta"
@@ -1010,6 +973,7 @@ if (document.getElementById("percentualesbagliata")) {
 }
 
 // Visualizza conteggio delle domande corrette e sbagliate nei paragrafi
+//scritte a dx e sx del grafico circolare stampate su html
 if (document.getElementById("domandegiuste")) {
   document.getElementById(
     "domandegiuste"
@@ -1021,94 +985,107 @@ if (document.getElementById("domandesbagliate")) {
   ).innerText = `${risposteSbagliate}/${risposteTotali} answers`;
 }
 
-// Rimani dentro la canvas del grafico
+//  canvas del grafico
 
 const canvas = document.getElementById("risposteChart");
-if (canvas){
-const ctx = canvas.getContext("2d");
-canvas.style.width = "400px"; // Larghezza doughnut
-canvas.style.height = "400px"; // Altezza doughnut
+if (canvas) {
+  const ctx = canvas.getContext("2d"); //crea costante ctx da utilizzare come parametro del grafico
+  canvas.style.width = "400px"; // Larghezza doughnut
+  canvas.style.height = "400px"; // Altezza doughnut
 
-const congratulationText = // Testo per aver superato
-  "Congratulations! You passed the exam. We'll send you the certificate in few minutes. Check your email (including promotions / spam folder)";
-const failedText = // Testo per aver fallito
-  "Oh no! You failed the exam. We'll send you the details in few minutes. Check your email (including promotions / spam folder)";
+  const congratulationText = // Testo per aver superato
+    "Congratulations! You passed the exam. We'll send you the certificate in few minutes. Check your email (including promotions / spam folder)";
+  const failedText = // Testo per aver fallito
+    "Oh no! You failed the exam. We'll send you the details in few minutes. Check your email (including promotions / spam folder)";
 
-// Rimani dentro il grafico
-
- new Chart(ctx, {
-  type: "doughnut",
-  data: {
-    datasets: [
-      {
-        data: [risposteCorrette, risposteSbagliate],
-        backgroundColor: [
-          "rgba(0, 255, 255)", // Colore per risposte corrette nel grafico
-          "rgba(194, 18, 141)", // Colore per risposte sbagliate nel grafico
-        ],
-        borderWidth: 0, // Rimuovi i bordi
-      },
-    ],
-  },
-  options: {
-    cutout: 150, // Spessore cerchio
-    responsive: false, // Centra il grafico nel div
-    plugins: {
-      legend: {
-        display: false, // Rimuovi la legenda sopra al grafico
-      },
+  //crea il grafico a schermo
+  new Chart(ctx, {
+    type: "doughnut", //tipo di grafico (circolare)
+    data: {
+      datasets: [
+        {
+          data: [risposteCorrette, risposteSbagliate], //parametri usati nel grafico
+          backgroundColor: [
+            "rgba(0, 255, 255)", // Colore per risposte corrette nel grafico
+            "rgba(194, 18, 141)", // Colore per risposte sbagliate nel grafico
+          ],
+          borderWidth: 0, // Rimuovi i bordi
+        },
+      ],
     },
-    // Testo dentro al grafico
-    animation: {
-      onProgress: function () {
-        const width = canvas.width;
-        const height = canvas.height;
+    options: {
+      cutout: 150, // Spessore cerchio
+      responsive: false, // Centra il grafico nel div
+      plugins: {
+        legend: {
+          display: false, // Rimuovi la legenda sopra al grafico
+        },
+      },
+      // Testo dentro al grafico
+      //animazione del cerchio al caricamento della pagina
+      animation: {
+        onProgress: function () {
+          const width = canvas.width;
+          const height = canvas.height;
 
-        const fontSize = 18; // Grandezza font testo centrale
-        const x = width / 2; // Posizione orizzontale testo all'interno
-        const y = height / 3; // Posizione verticale testo all'interno
+          const fontSize = 18; // Grandezza font testo centrale
+          const x = width / 2; // Posizione orizzontale testo all'interno
+          const y = height / 3; // Posizione verticale testo all'interno
 
-        ctx.font = fontSize + "px sans-serif"; // Font testo centrale
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
+          ctx.font = fontSize + "px sans-serif"; // Font testo centrale
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
 
-        // Funzione per il wrapping del testo
-        function wrapText(text, x, y, maxWidth, lineHeight) {
-          var words = text.split(" ");
-          var line = "";
-          for (var n = 0; n < words.length; n++) {
-            var testLine = line + words[n] + " ";
-            var metrics = ctx.measureText(testLine);
-            var testWidth = metrics.width;
-            if (testWidth > maxWidth && n > 0) {
-              ctx.fillText(line, x, y);
-              line = words[n] + " ";
-              y += lineHeight;
-            } else {
-              line = testLine;
+          // Funzione per il wrapping del testo
+          //i parametri sono : text(testo), x,y (posizione di partenza del testo), maxWidth(larghezza max del testo), lineHeight(spazio tra righe)
+          function wrapText(text, x, y, maxWidth, lineHeight) {
+            // Suddivide il testo in singole parole
+            var words = text.split(" ");
+            // Inizializza una variabile per la riga corrente
+            var line = "";
+            // Loop attraverso tutte le parole del testo
+            for (var n = 0; n < words.length; n++) {
+              // Crea un testo di prova unendo la parola corrente con la riga esistente
+              var testLine = line + words[n] + " ";
+              // Misura la larghezza del testo di prova
+              var metrics = ctx.measureText(testLine);
+              var testWidth = metrics.width;
+              // Verifica se il testo di prova supera la larghezza massima consentita
+              // e se non si tratta della prima parola
+              if (testWidth > maxWidth && n > 0) {
+                // Disegna la riga corrente sul canvas
+                ctx.fillText(line, x, y);
+                // Resetta la riga corrente alla parola corrente
+                line = words[n] + " ";
+                // Sposta la coordinata y verso il basso di lineHeight
+                y += lineHeight;
+              } else {
+                // Aggiorna la riga corrente al testo di prova
+                line = testLine;
+              }
             }
+            // Disegna l'ultima riga corrente sul canvas
+            ctx.fillText(line, x, y);
           }
-          ctx.fillText(line, x, y);
-        }
-        var maxWidth = width * 0.6;
-        var lineHeight = fontSize * 1.8; // Spaziatura linee nel testo
+          var maxWidth = width * 0.6; //ampiezza max del testo nel cerchio
+          var lineHeight = fontSize * 1.8; // Spaziatura linee nel testo
 
-        // Determina quale testo mostrare in base al superamento o al fallimento dell'esame
-        let displayText = "";
-        if (percentualeCorrette >= 60) {
-          displayText = congratulationText;
-          ctx.fillStyle = "rgba(0, 255, 255)";
-        } else {
-          displayText = failedText;
-          ctx.fillStyle = "rgba(194, 18, 141)";
-        }
+          // Determina quale testo mostrare in base al superamento o al fallimento dell'esame (se la percentuale supera o meno 60%)
+          let displayText = "";
+          if (percentualeCorrette >= 60) {
+            displayText = congratulationText;
+            ctx.fillStyle = "rgba(0, 255, 255)"; //colore successo
+          } else {
+            displayText = failedText;
+            ctx.fillStyle = "rgba(194, 18, 141)"; //Colore fallimento
+          }
 
-        // Chiama la funzione wrapText per visualizzare il testo in modo appropriato nel canvas
-        wrapText(displayText, x, y, maxWidth, lineHeight);
+          // Chiama la funzione wrapText per visualizzare il testo in modo appropriato nel canvas
+          wrapText(displayText, x, y, maxWidth, lineHeight);
+        },
       },
     },
-  },
-});
+  });
 }
 //fine doughnut chart (cerchio risultati)
 //---------------------------------------- 4 PAGINA (nicola)--------------------------///
@@ -1118,7 +1095,6 @@ initStarRating();
 function initStarRating() {
   // Seleziona tutte le immagini all'interno dell'elemento con id "stelle"
   const stars = document.querySelectorAll("#stelle img");
-
 
   // Array per memorizzare i commenti in base alla valutazione
   const commentStyles = [
