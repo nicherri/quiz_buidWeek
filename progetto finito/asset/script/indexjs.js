@@ -7,7 +7,7 @@ if (btnProceed) {
     while (!isValid) {
       let diff = prompt("Type Difficulty: (easy, middle, hard)"); // Utilizzo di prompt per mostrare come Pop-Up il messaggio sulla difficoltà
       if (diff === "easy" || diff === "middle" || diff === "hard") {
-        localStorage.setItem("diff", diff); // Utilizzo di localStorage per salvare la variabile e riusarla in un secondo momento
+        localStorage.setItem("diff", diff); //****** / Utilizzo di localStorage per salvare la variabile e riusarla in un secondo momento
         isValid = true;
       } else {
         window.alert("Invalid!");
