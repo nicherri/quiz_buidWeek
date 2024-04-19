@@ -10,13 +10,13 @@ if (btnProceed) {
         localStorage.setItem("diff", diff); //****** / Utilizzo di localStorage per salvare la variabile e riusarla in un secondo momento
         isValid = true;
       } else {
-        window.alert("Invalid!");
+        window.alert("Invalid! Choose easy, middle or hard");
       }
     }
 
     isValid = false; // Resetta isValid per il nuovo controllo
     while (!isValid) {
-      let numQuest = prompt("How many questions do you want?"); // Prompt per mostrare a video quante domande si vogliono selezionare
+      let numQuest = prompt("How many questions do you want? (5-20)"); // Prompt per mostrare a video quante domande si vogliono selezionare
       if (
         !isNaN(numQuest) &&
         parseInt(numQuest) >= 5 &&
